@@ -40,15 +40,6 @@ module.exports = {
       spacing: {
         'container-padding': '7.5vw',
       },
-      backgroundImage: {
-        'hero-not-found':
-          "linear-gradient(to right bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('../src/imgs/not-found.jpg')",
-        'hero-home':
-          "linear-gradient(to right bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../src/imgs/home/hero.jpg')",
-        testimonials:
-          "linear-gradient(to right bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../src/imgs/home/testimonials-bkg.jpg')",
-        services: "url('../src/imgs/services/services-bkg.svg')",
-      },
       boxShadow: {
         'card-shadow': '0px 0px 3px 1px rgb(0 0 0 / 18%)',
         'process-shadow': ' 0px 3px 4px 0px rgba(0 0 0 / 12%)',
