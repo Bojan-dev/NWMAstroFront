@@ -1,0 +1,204 @@
+---
+import '../components/global/GlobalStyles.astro';
+import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon';
+import promotion from '../imgs/free-boxes/boxes-promotion.png';
+import BoxesForm from '../components/free-boxes/BoxesForm';
+---
+
+<Layout title="- Free Boxes" description="Free Boxes Page" path="/free-boxes">
+  <main
+    class="relative mb-20 pt-48 before:absolute before:top-0 before:left-0 before:z-[-1] before:h-1/2 before:w-full before:bg-gradient-to-t before:from-clr-blue--dark before:to-clr-blue md:pt-60"
+  >
+    <div class="my-container mx-auto">
+      <div class="relative mx-auto w-fit">
+        <img
+          src={promotion}
+          alt=""
+          class="absolute left-0 top-1/2 hidden h-48 -translate-y-1/2 -translate-x-150 motion-safe:opacity-0 motion-safe:duration-1000 lg:block"
+          data-animation="opacity"
+        />
+        <h1
+          class="mb-20 flex flex-col gap-6 text-center text-h3_md font-black tracking-wide text-white text-white sm:mb-28 md:gap-12 md:text-xl"
+        >
+          <span
+            class="motion-safe:translate-y-1/2 motion-safe:opacity-0 motion-safe:duration-500"
+            data-animation="translateY opacity"
+            >We are running a <span
+              class="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-xl after:bg-clr-green md:after:bottom-1.5"
+              >promotion.</span
+            >
+          </span>
+          <span
+            class="delay-300 motion-safe:translate-y-1/2 motion-safe:opacity-0 motion-safe:duration-500"
+            data-animation="translateY opacity"
+            >Grab <span
+              class="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-xl after:bg-clr-green md:after:bottom-1.5"
+              >free</span
+            > boxes and supplies now!</span
+          >
+        </h1>
+      </div>
+
+      <div
+        class="flex flex-col gap-10 rounded-3xl bg-white p-8 shadow-card-shadow sm:p-12"
+      >
+        <div class="wrap mb-6 flex flex-wrap justify-center gap-10 text-center">
+          <div
+            class="flex flex-col items-center gap-3 delay-300 motion-safe:translate-y-1/2 motion-safe:opacity-0 motion-safe:duration-500 sm:flex-row"
+            data-animation="translateY opacity"
+          >
+            <Icon name="mdi:gift" class="text-clr-green w-auto h-7" />
+
+            <p>All supplies listed bellow are free!</p>
+          </div>
+          <div
+            class="flex flex-col items-center gap-3 delay-500 motion-safe:translate-y-1/2 motion-safe:opacity-0 motion-safe:duration-500 sm:flex-row sm:flex-row"
+            data-animation="translateY opacity"
+          >
+            <Icon
+              name="dashicons:format-aside"
+              class="text-clr-green w-auto h-7"
+            />
+            <p>Fill out the form bellow and secure a promotion.</p>
+          </div>
+          <div
+            class="flex flex-col items-center gap-3 delay-700 motion-safe:translate-y-1/2 motion-safe:opacity-0 motion-safe:duration-500 sm:flex-row sm:flex-row"
+            data-animation="translateY opacity"
+          >
+            <Icon
+              name="ic:baseline-wifi-calling-3"
+              class="text-clr-green w-auto h-7"
+            />
+            <p>Our representative will contact you shortly.</p>
+          </div>
+        </div>
+        <div>
+          <h2
+            class="relative font-semibold before:absolute before:bottom-0 before:h-0.5 before:w-12 before:rounded-xl before:bg-clr-green"
+          >
+            BOXES AND PACKING SUPPLIES:
+          </h2>
+          <table
+            class="border-italic mt-6 w-full border-separate border-spacing-y-6 border-b lg:table-fixed"
+          >
+            <tr class="text-left">
+              <th class="border-italic border-b font-light sm:pl-8">ITEM</th>
+              <th class="border-italic border-b px-4 text-center font-light"
+                >PRICE</th
+              >
+              <th class="border-italic border-b text-center font-light"
+                >QUANTITY</th
+              >
+              <th
+                class="border-italic hidden border-b text-right font-semibold sm:block"
+                >TOTAL</th
+              >
+            </tr>
+            <tr>
+              <td class="flex items-center"
+                ><Icon
+                  name="teenyicons:box-solid"
+                  class="text-clr-green h-3 mr-5"
+                />Small Box</td
+              >
+              <td class="text-center">$1.49</td>
+              <td class="text-center">15</td>
+              <td class="hidden text-right font-semibold sm:block">$22.35</td>
+            </tr>
+            <tr>
+              <td class="flex items-center"
+                ><Icon
+                  name="teenyicons:box-solid"
+                  class="text-clr-green h-4 mr-4"
+                />Medium Box</td
+              >
+              <td class="text-center">$2.25</td>
+              <td class="text-center">6</td>
+              <td class="hidden text-right font-semibold sm:block">$13.50</td>
+            </tr>
+            <tr>
+              <td class="flex items-center"
+                ><Icon
+                  name="teenyicons:box-solid"
+                  class="text-clr-green h-5 mr-3"
+                />Large Box</td
+              >
+              <td class="text-center">$2.99</td>
+              <td class="text-center">4</td>
+              <td class="hidden text-right font-semibold sm:block">$11.96</td>
+            </tr>
+            <tr>
+              <td class="flex items-center"
+                ><Icon name="fa-solid:tape" class="text-clr-green h-4 mr-3" />
+                Tape</td
+              >
+              <td class="text-center">$3.99</td>
+              <td class="text-center">4</td>
+              <td class="hidden text-right font-semibold sm:block">$15.96</td>
+            </tr>
+            <tr>
+              <td class="flex items-center"
+                ><Icon
+                  name="ic:baseline-label"
+                  class="text-clr-green h-4 mr-4"
+                />
+                Labels</td
+              >
+              <td class="text-center">$6.99</td>
+              <td class="text-center">1</td>
+              <td class="hidden text-right font-semibold sm:block">$6.99</td>
+            </tr>
+            <tr>
+              <td class="flex items-center"
+                ><Icon name="mdi:marker" class="text-clr-green h-4 mr-4" /> Marker</td
+              >
+              <td class="text-center">$2.99</td>
+              <td class="text-center">1</td>
+              <td class="hidden text-right font-semibold sm:block">$2.99</td>
+            </tr>
+          </table>
+        </div>
+        <div
+          class="flex flex-col-reverse items-center justify-between gap-12 md:flex-row md:gap-0"
+        >
+          <div class="flex flex-col items-center gap-4">
+            <h3>
+              GRAB PROMOTION <span class="font-semibold text-clr-green"
+                >NOW!</span
+              >
+            </h3>
+            <Icon
+              name="mdi:arrow-down-bold"
+              class="h-14 text-clr-green motion-safe:animate-bounce"
+            />
+          </div>
+          <div class="grid grid-cols-3 grid-rows-3 gap-3 text-right">
+            <p class="sm:uppercas col-span-2">Subtotal with taxes:</p>
+            <p
+              class="relative h-fit border-b border-clr-italic--dark before:absolute before:left-0 before:top-1/2 before:h-0.5 before:w-full before:-translate-y-1/2 before:bg-black"
+            >
+              $81.73
+            </p>
+            <p class="col-span-2 sm:uppercase">Savings:</p>
+            <p class="h-fit border-b border-clr-italic--dark">81.73$</p>
+            <p
+              class="col-span-2 font-black motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:duration-500 sm:uppercase"
+              data-animation="translateX opacity"
+            >
+              Total due Today:
+            </p>
+
+            <p
+              class="h-fit border-b border-clr-italic--dark font-black text-clr-green motion-safe:translate-y-1/2 motion-safe:opacity-0 motion-safe:duration-1000"
+              data-animation="translateY opacity"
+            >
+              $0.0
+            </p>
+          </div>
+        </div>
+        <BoxesForm client:idle />
+      </div>
+    </div>
+  </main>
+</Layout>

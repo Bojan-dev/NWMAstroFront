@@ -1,0 +1,93 @@
+---
+import { WorkProcessCardProps } from './WorkProcess.astro';
+import '../global/GlobalStyles.astro';
+
+type ProcessCardProps = WorkProcessCardProps & {
+  cardNum: number;
+  processCardsLength: number;
+};
+
+const {
+  img,
+  imgAlt,
+  smallH,
+  heading,
+  texts,
+  illustration,
+  illustrationAlt,
+  cardNum,
+  processCardsLength,
+} = Astro.props as ProcessCardProps;
+
+const isCardEven = (cardNum + 1) % 2 === 0;
+---
+
+<>
+  <div
+    class="work-process-perspective group relative motion-safe:opacity-0 motion-safe:duration-1000"
+    data-animation="process opacity"
+  >
+    <div
+      class={`absolute -translate-y-1/2 z-10 bg-clr-green w-12 h-12 grid place-content-center text-white rounded-full left-1/2 -translate-x-1/2`}
+    >
+      <p>{cardNum + 1}</p>
+    </div>
+    <div
+      class="relative overflow-x-hidden rounded-3xl border border-clr-italic px-5 py-12 shadow-process-shadow lg:px-12"
+    >
+      <div
+        class={`flex justify-between items-center flex-col ${
+          isCardEven ? 'lg:flex-row-reverse' : 'lg:flex-row'
+        }`}
+      >
+        <div
+          class={`flex gap-10 items-center flex-col text-center w-11/12 lg:w-2/3 ${
+            isCardEven ? 'lg:text-right' : 'lg:text-left'
+          } ${isCardEven ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
+        >
+          <img
+            src={img}
+            alt={imgAlt}
+            class="aspect-square w-44 rounded-full lg:w-52"
+            loading="lazy"
+            width="208"
+            height="208"
+          />
+          <div
+            class={`flex flex-col gap-4 items-center ${
+              isCardEven ? 'lg:items-end' : 'lg:items-start'
+            }`}
+          >
+            <p class="text-sm">{smallH}</p>
+            <h3 class="text-h4 font-semibold">{heading}</h3>
+            <div class="h-0.5 w-12 rounded bg-clr-green"></div>
+            {texts.map((text) => <p>{text}</p>)}
+          </div>
+        </div>
+        <img
+          src={illustration}
+          alt={illustrationAlt}
+          class="process-anim mt-8 max-h-36 max-w-[15rem] lg:mt-0"
+          loading="lazy"
+        />
+      </div>
+      <div
+        class="absolute bottom-0 left-0 h-0.5 w-0 bg-clr-green duration-500 ease-out group-hover:block group-hover:w-full"
+      >
+      </div>
+    </div>
+  </div>
+  <div class="relative h-28">
+    <div
+      class={`absolute w-px h-full bg-clr-text -translate-x-1/2 left-1/2 lg:translate-x-0 ${
+        isCardEven ? 'lg:right-40 lg:left-auto' : 'lg:left-40'
+      }`}
+    >
+    </div>
+    {
+      cardNum + 1 === processCardsLength && (
+        <div class="bg-clr-green before:bg-clr-green absolute bottom-0 right-1/2 h-10 w-10 translate-x-1/2 rounded-full before:absolute before:top-1/2 before:left-1/2 before:h-2/3 before:w-2/3 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:border-8 before:border-white before:content-[''] lg:right-40" />
+      )
+    }
+  </div>
+</>

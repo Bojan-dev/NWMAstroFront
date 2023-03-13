@@ -1,0 +1,388 @@
+---
+import HeroLine from '../components/home/HeroLine.astro';
+import illustration from '../imgs/home/hero-illustration.svg';
+import Layout from '../layouts/Layout.astro';
+import Overlay from '../components/global/Overlay.astro';
+import Btn from '../components/UI/Btn.astro';
+import IconWrap from '../components/UI/IconWrap.astro';
+import WhyUs from '../components/home/WhyUs.astro';
+import OurOffer from '../components/home/OurOffer.astro';
+import WorkProcess from '../components/home/WorkProcess.astro';
+import Numbers from '../components/home/Numbers.astro';
+import Newsletter from '../components/home/Newsletter.astro';
+import Testimonials from '../components/home/Testimonials.astro';
+import { Icon } from 'astro-icon';
+
+const sections = [
+  'Home',
+  'Why us',
+  'Our Offer',
+  'Process',
+  'Numbers',
+  'Testimonials',
+  'Footer',
+];
+---
+
+<style>
+  .bkg-lines {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.15) 100%
+    );
+  }
+
+  .hero-header::before,
+  .hero-header::after {
+    content: 'NoWorriesMoving!';
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .hero-header::after {
+    transform: translateX(-0.06em);
+    opacity: 0.4;
+  }
+
+  .hero-header::before {
+    transform: translateX(-0.12em);
+    opacity: 0.2;
+  }
+
+  .hero-svg-h {
+    height: 14.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero-svg-h {
+      height: calc(100% - ((theme('padding.5') * 2.5) + theme('fontSize.lg')));
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 1000;
+    }
+    20% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .svg-path-anim {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 10s linear forwards infinite;
+  }
+
+  @keyframes plane {
+    0% {
+      opacity: 0;
+    }
+    16% {
+      opacity: 0;
+    }
+    18% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .svg-plane-anim {
+    animation: plane 10s linear infinite;
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion) {
+    .svg-path-anim {
+      stroke-dasharray: 0;
+      stroke-dashoffset: 0;
+      animation: none;
+    }
+
+    .svg-plane-anim {
+      opacity: 1;
+      animation: none;
+    }
+  }
+</style>
+
+<Layout title="- Home" description="Home Page" path="/">
+  <Overlay extraClass="overlay z-50" />
+  <aside
+    class="sections-observer fixed right-[7.5vw] bottom-2/4 z-40 hidden translate-y-3/4 flex-col gap-8 text-white lg:flex"
+  >
+    <div
+      class="absolute left-1/2 h-[125%] w-0.5 -translate-x-1/2 bg-clr-italic"
+    >
+      <div
+        class="section-observer-close absolute bottom-0 left-1/2 z-20 h-3 w-3 -translate-x-1/2 cursor-pointer bg-clr-error--light hover:scale-125 hover:bg-clr-error"
+      >
+        <Icon name="ic:round-close" />
+      </div>
+    </div>
+    {
+      sections.map((section) => (
+        <div
+          class="group relative flex items-center"
+          data-sectionid={section.toLocaleLowerCase().replaceAll(' ', '-')}
+        >
+          <div class="relative flex h-3 w-3 cursor-pointer items-center border-2 bg-white ">
+            <div class="section-frame border-clr-green absolute left-1/2 top-1/2 z-20 hidden h-full w-full -translate-x-1/2 -translate-y-1/2 border p-2" />
+          </div>
+          <p class="section-name drop-shadow-section-shadow absolute hidden max-w-[8ch] translate-x-7 overflow-hidden text-ellipsis whitespace-nowrap group-hover:block xl:overflow-visible">
+            {section}
+          </p>
+        </div>
+      ))
+    }
+  </aside>
+  <main
+    class="grid h-screen min-h-rem-55 place-content-center bg-hero-home bg-cover bg-center pt-16 text-center text-white"
+  >
+    <div class="my-container my-5 flex flex-col gap-6 sm:my-0 sm:gap-12">
+      <h1
+        class="home-section-heading text-center text-xl motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:duration-500 sm:text-left sm:text-h1_md lg:text-h1"
+        data-section="home"
+        data-animation="translateX opacity"
+      >
+        MOVERS THAT WE{' '}
+        <span class="font-semibold text-clr-green">TRUST!</span>
+      </h1>
+
+      <div class="relative m-auto flex w-fit justify-center">
+        <HeroLine
+          itemsPlacement={'items-end'}
+          lrside={'left-0'}
+          tbside={'bottom-0'}
+          direction={'flex-row-reverse'}
+          moveV={'translate-x-[-105%]'}
+          translateCircleY={'translate-y-2'}
+          translateLineY={'translate-y-full'}
+          translateLineX={'translate-x-[10px]'}
+          linesDirection={'items-start'}
+          rotate={'rotate-45'}
+          rotateOrigin={'origin-top-right'}
+          textLinePos={'self-end'}
+          textLineX={'translate-x-[-2.4rem]'}
+          textAlign={'items-start'}
+          textTranslateX={'translate-x-[2.4rem]'}
+          firstText={'small enough'}
+          secondText={'to care!'}
+        />
+        <div
+          class="hidden translate-x-[-0.35rem] scale-x-[-1] flex-col justify-between self-stretch motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:delay-700 motion-safe:duration-500 sm:flex"
+          data-animation="translateX opacity"
+        >
+          {
+            Array(9)
+              .fill('')
+              .map((_, i) => (
+                <div
+                  style={{ width: `${(i + 1) * 6}px` }}
+                  class="bkg-lines h-px bg-white"
+                />
+              ))
+          }
+        </div>
+        <h2
+          class="hero-header relative inline-flex text-xl font-semibold motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:delay-500 motion-safe:duration-500 sm:text-h1_md lg:text-h1"
+          data-animation="translateX opacity"
+        >
+          NoWorriesMoving!
+        </h2>
+        <HeroLine
+          items-end={'items-start'}
+          lrside={'right-0'}
+          tbside={'top-0'}
+          direction={'flex-row'}
+          moveV={'translate-x-[105%]'}
+          translateCircleY={'translate-y-[-0.5rem]'}
+          translateLineY={'-translate-y-full'}
+          translateLineX={'translate-x-[-10px]'}
+          linesDirection={'items-end'}
+          rotate={'rotate-45'}
+          rotateOrigin={'origin-bottom-right'}
+          textLinePos={'self-start'}
+          textLineX={'translate-x-[2.4rem]'}
+          textLineY={'translate-y-[-1px]'}
+          textAlign={'items-end'}
+          textTranslateX={'translate-x-[-2.4rem]'}
+          firstText={'big enough'}
+          secondText={'to perform!'}
+        />
+      </div>
+    </div>
+    <div
+      class="my-container relative m-auto flex translate-y-10 flex-col items-center"
+    >
+      <img
+        width="600"
+        height="250"
+        class="w-1/2 min-w-[22.5rem] sm:w-2/5 sm:min-w-[25rem]"
+        src={illustration}
+        alt='Cell phone in front of moving truck pointing to a "Book Now" button'
+      />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="197.484"
+        height="546.735"
+        viewBox="0 0 197.484 546.735"
+        class="hero-svg-h absolute -translate-x-10 sm:-translate-x-20 2xl:translate-x-[-7.5rem]"
+      >
+        <g
+          id="Group_2600"
+          data-name="Group 2600"
+          transform="translate(-332.693 -144.79)"
+        >
+          <g
+            id="Group_2404"
+            data-name="Group 2404"
+            transform="matrix(0.848, 0.53, -0.53, 0.848, 448.262, 628.645)"
+            class="svg-plane-anim"
+          >
+            <path
+              id="Path_2908"
+              data-name="Path 2908"
+              d="M0,12.992l42.532,6.693L14.527,0,13,6.159,2.608,7.887Z"
+              transform="translate(27.407 10.759)"
+              fill="#418203"></path>
+            <path
+              id="Path_2909"
+              data-name="Path 2909"
+              d="M69.939,21.045l-35.2-18.8L0,0Z"
+              transform="translate(0 9.398)"
+              fill="#41a503"></path>
+            <path
+              id="Path_2910"
+              data-name="Path 2910"
+              d="M0,10.759,28.005,30.444,6.544,0Z"
+              transform="translate(41.934 0)"
+              fill="#41a503"></path>
+          </g>
+          <path
+            id="Path_2914"
+            data-name="Path 2914"
+            d="M387.653,312.09c-1.364-32.48,97.921-157.2,167.344-111.5S538.8,312.3,535.713,366.458s49.367,88.858,46.282,142.174S512.768,670.01,526.653,697.09"
+            transform="translate(-53.443 -44.309)"
+            fill="none"
+            stroke="#019ae6"
+            stroke-linecap="round"
+            stroke-width="3"
+            stroke-dasharray="8"
+            class="svg-path-anim"></path>
+        </g>
+      </svg>
+
+      <div class="flex w-full flex-col gap-5 sm:w-fit sm:flex-row sm:gap-8">
+        <Btn href="/pricing" classes="px-12 py-5 md:px-20">BOOK NOW</Btn>
+        <a
+          href="/services"
+          class="bg-white px-12 py-5 text-lg font-semibold text-clr-green outline-2 outline-offset-[-2px] outline-clr-green hover:bg-transparent hover:text-white hover:outline md:px-20"
+        >
+          OUR SERVICES
+        </a>
+      </div>
+      <div
+        class="absolute bottom-0 left-[7.5vw] flex hidden flex-col gap-3 sm:flex"
+      >
+        <IconWrap
+          href="https://www.facebook.com/noworriesmoving.us"
+          icon="grommet-icons:facebook-option"
+          media="Facebook"
+          classes="bg-clr-green hover:bg-white hover:text-clr-green"
+        />
+        <IconWrap
+          href="https://www.instagram.com/noworriesmoving/"
+          icon="mdi:instagram"
+          media="Instagram"
+          classes="bg-clr-green hover:bg-white hover:text-clr-green"
+        />
+        <IconWrap
+          href="https://www.linkedin.com/company/noworriesmoving/"
+          icon="grommet-icons:linkedin-option"
+          media="Linkedin"
+          classes="bg-clr-green hover:bg-white hover:text-clr-green"
+        />
+      </div>
+    </div>
+  </main>
+  <WhyUs />
+  <OurOffer />
+  <WorkProcess />
+  <Numbers />
+  <Newsletter />
+  <Testimonials />
+</Layout>
+
+<script defer>
+  const sections = document.querySelectorAll('.home-section-heading');
+  const sectionsPointerWrapper = document.querySelector('.sections-observer');
+  const sectionPointers = Array.from(sectionsPointerWrapper.children).filter(
+    (section) => section.dataset.sectionid
+  );
+
+  sectionPointers.forEach((pointer) =>
+    pointer.addEventListener('click', (e) => {
+      const selectedSection = document.querySelector(
+        `[data-section=${e.target.parentElement.dataset.sectionid}]`
+      );
+
+      selectedSection.scrollIntoView({ block: 'center' });
+    })
+  );
+
+  const handleObservedSectionClasses = (el, elWrapper) => {
+    el.classList.toggle('hidden');
+    el.parentElement.classList.toggle('scale-150');
+    elWrapper.querySelector('.section-name').classList.toggle('hidden');
+  };
+
+  const handleSectionObserve = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        sectionPointers.forEach((section) => {
+          const sectionFrame = section.querySelector('.section-frame');
+
+          if (sectionFrame.classList.contains('hidden')) return;
+
+          handleObservedSectionClasses(sectionFrame, section);
+        });
+
+        const selectedSectionPointer = sectionsPointerWrapper.querySelector(
+          `[data-sectionid=${entry.target.dataset.section}]`
+        );
+
+        handleObservedSectionClasses(
+          selectedSectionPointer.querySelector('.section-frame'),
+          selectedSectionPointer
+        );
+      }
+    });
+  };
+
+  const sectionObserverOptions = {
+    root: null,
+    threshold: 1,
+  };
+
+  const sectionsObserver = new IntersectionObserver(
+    handleSectionObserve,
+    sectionObserverOptions
+  );
+
+  sections.forEach((section) => sectionsObserver.observe(section));
+
+  const closeObserverBtn = document.querySelector('.section-observer-close');
+
+  closeObserverBtn.addEventListener('click', () => {
+    sectionsPointerWrapper.classList.remove('lg:flex');
+    sections.forEach((section) => sectionsObserver.unobserve(section));
+  });
+</script>

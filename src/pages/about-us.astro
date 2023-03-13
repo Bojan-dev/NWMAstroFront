@@ -1,0 +1,111 @@
+---
+import '../components/global/GlobalStyles.astro';
+import Layout from '../layouts/Layout.astro';
+import IconWrap from '../components/UI/IconWrap.astro';
+import truck from '../imgs/about-us/about-us-boxes.jpg';
+import dart from '../imgs/about-us/about-us-dart.png';
+import { Icon } from 'astro-icon';
+import Circles from '../components/about-us/Circles.astro';
+import OurMission from '../components/about-us/OurMission.astro';
+---
+
+<style></style>
+
+<Layout title="- About Us" description="About Us Page" path="/about-us">
+  <div class="absolute top-0 left-0 min-h-[125px] w-full bg-clr-blue"></div>
+  <main class="h-fit min-h-rem-55 pt-[125px] lg:h-screen">
+    <div
+      class="my-container relative mx-auto flex h-full flex-col gap-20 py-20 lg:grid lg:grid-cols-2 lg:gap-10 lg:py-0"
+    >
+      <Circles classes="left-0 top-1/2" />
+      <div class="flex flex-col justify-center gap-10 text-center lg:text-left">
+        <div>
+          <p
+            class="mb-3 font-semibold text-clr-green motion-safe:scale-50 motion-safe:opacity-0 motion-safe:duration-500 sm:mb-5"
+            data-animation="scale opacity"
+          >
+            Small enough to care, big enough to perform!
+          </p>
+          <h1
+            class="text-h3_md font-black tracking-wide motion-safe:scale-50 motion-safe:opacity-0 motion-safe:delay-500 motion-safe:duration-500 md:gap-12 md:text-xl_height"
+            data-animation="scale opacity"
+          >
+            We're providing top-notch moving services for over <span
+              class="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-xl after:bg-clr-green md:after:bottom-1.5"
+              >15 years.</span
+            >
+          </h1>
+        </div>
+        <p>
+          With a small, yet dedicated team, we strive to offer a personalized
+          touch to every move we perform. We're focused to provide excellent
+          service while also ensuring that our customers feel comfortable and
+          stress-free throughout the moving process.
+        </p>
+        <div
+          class="mx-auto flex gap-3 motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:duration-500 lg:mx-0"
+          data-animation="translateX opacity"
+        >
+          <IconWrap
+            href="https://www.facebook.com/noworriesmoving.us"
+            icon="grommet-icons:facebook-option"
+            media="Facebook"
+            classes="bg-clr-blue hover:bg-clr-blue--dark text-white"
+          />
+          <IconWrap
+            href="https://www.instagram.com/noworriesmoving/"
+            icon="mdi:instagram"
+            media="Instagram"
+            classes="bg-clr-blue hover:bg-clr-blue--dark text-white"
+          />
+          <IconWrap
+            href="https://www.linkedin.com/company/noworriesmoving/"
+            icon="grommet-icons:linkedin-option"
+            media="Linkedin"
+            classes="bg-clr-blue hover:bg-clr-blue--dark text-white"
+          />
+        </div>
+      </div>
+      <div class="flex items-center justify-center lg:justify-end">
+        <div
+          class="relative grid h-full w-11/12 place-content-center gap-6 sm:w-3/4 md:w-1/2 lg:w-10/12 2xl:w-2/3"
+        >
+          <div class="relative">
+            <img
+              src={dart}
+              alt="Three darts hit the board/target"
+              class="absolute top-0 left-0 w-20 -translate-x-1/2 -translate-y-1/2 motion-safe:opacity-0 motion-safe:delay-500 motion-safe:duration-500 md:w-auto"
+              data-animation="opacity"
+            />
+            <img
+              src={truck}
+              alt="No Worries Moving truck on a sunny road with buildings around"
+              class="motion-safe:translate-x-1/2 motion-safe:opacity-0 motion-safe:duration-500"
+              data-animation="translateXNeg opacity"
+            />
+          </div>
+          <div
+            class="right-0 top-0 mx-auto flex flex-col items-center sm:absolute sm:block sm:-translate-y-full sm:translate-x-150 lg:top-10 lg:translate-x-0 lg:translate-y-0"
+          >
+            <a
+              href="/contact"
+              class="group block grid h-10 w-10 place-content-center rounded-full bg-clr-blue"
+              aria-label="Contact Page"
+            >
+              <Icon
+                name="gg:arrow-long-right"
+                class="w-9 -translate-x-1/2 duration-300 group-hover:translate-x-1/2"
+              />
+            </a>
+            <p
+              class="mt-2 text-sm font-semibold sm:absolute sm:right-0 sm:text-right"
+            >
+              Contact Us
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <OurMission />
+</Layout>

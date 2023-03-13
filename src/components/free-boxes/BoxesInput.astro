@@ -1,0 +1,26 @@
+---
+type FreeBoxesProps = {
+  labelTxt: string;
+  inputId: string;
+  inputPlaceholder: string;
+  inputType: 'text' | 'number';
+};
+
+const {
+  labelTxt,
+  inputId,
+  inputPlaceholder,
+  inputType = 'text',
+} = Astro.props as FreeBoxesProps;
+---
+
+<div class="relative flex w-full flex-col items-start gap-6">
+  <label for={inputId}>{labelTxt}</label>
+  <input
+    type={inputType}
+    id={inputId}
+    required
+    placeholder={inputPlaceholder}
+    class="w-full rounded-xl border-b-2 border-transparent py-4 px-8 text-sm outline outline-1 outline-clr-italic--dark focus:border-clr-green"
+  />
+</div>

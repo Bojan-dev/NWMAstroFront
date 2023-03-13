@@ -1,0 +1,68 @@
+---
+import '../components/global/GlobalStyles.astro';
+import Layout from '../layouts/Layout.astro';
+import family from '../imgs/about-you/about-you-family.png';
+import AboutYouForm from '../components/about-you/AboutYouForm';
+
+const textsInfo = [
+  {
+    text: 'Everybody keeps talking about themselves and their companies, but what about you? Did you ever get a chance to say who you are and what is your story? Why is it important for us to hear? Because with No Worries Moving you are not just a number, you are not just a "move" or a "job".',
+    anim: 'translateX opacity',
+    animCls:
+      'motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:duration-500',
+  },
+  {
+    text: 'You are a person that is letting us in their home, trusting us to move yours most personal belongings that is sometimes transferred over the generations, items that are referring to memories and love, we fell proud and grateful for that privilege. That is why it is important for us to know more about you and people we will meet at your move date.',
+    anim: 'translateXNeg opacity',
+    animCls:
+      'motion-safe:translate-x-1/2 motion-safe:opacity-0 motion-safe:duration-500',
+  },
+];
+---
+
+<Layout title="- About You" description="About You Page" path="/about-you">
+  <main class="mb-20 h-fit min-h-rem-55 bg-clr-blue py-20 pt-48">
+    <div class="my-container flex flex-col gap-20 text-white">
+      <h1
+        class="flex flex-col items-center gap-4 text-center text-h3_md font-black tracking-wide md:gap-8 md:text-xl"
+      >
+        <span
+          class="w-fit motion-safe:scale-50 motion-safe:opacity-0 motion-safe:duration-500"
+          data-animation="scale opacity">Company is not important,</span
+        >
+        <span
+          class="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-xl after:bg-clr-green motion-safe:scale-50 motion-safe:opacity-0 motion-safe:duration-500"
+          data-animation="scale opacity">you are!</span
+        >
+      </h1>
+      <div class="z-10 flex grid-cols-2 flex-col gap-12 lg:grid">
+        {
+          textsInfo.map((info) => (
+            <div
+              class={`bg-clr-blue--dark relative grid place-content-center rounded-3xl border border-white py-10 px-8 ${info.animCls}`}
+              data-animation={info.anim}
+            >
+              <div class="absolute left-1/2 h-2.5 w-1/4 -translate-x-1/2 rounded-b-lg bg-white sm:w-32" />
+
+              <p>{info.text}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div
+        class="relative mt-40 rounded-3xl bg-white p-8 text-clr-text shadow-card-shadow sm:p-12"
+      >
+        <img
+          src={family}
+          alt=""
+          class="absolute left-1/2 top-0 max-h-44 max-w-full -translate-x-1/2 -translate-y-full"
+        />
+        <h2 class="text-center text-lg font-semibold">
+          Please, fill out the form bellow:
+        </h2>
+        <hr class="mt-6 mb-12" />
+        <AboutYouForm client:idle />
+      </div>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,46 @@
+---
+import { Icon } from 'astro-icon';
+
+type OurInfoProps = {
+  heading: string;
+  text: string;
+  icon: string;
+  delayCl: string;
+  href: string;
+  target?: boolean;
+  isLarger?: boolean;
+  media: string;
+};
+
+const {
+  heading,
+  text,
+  icon,
+  delayCl,
+  href,
+  target = false,
+  isLarger = false,
+  media,
+} = Astro.props as OurInfoProps;
+---
+
+<div
+  class={`flex flex-col items-center gap-5 motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:duration-500 sm:flex-row ${delayCl}`}
+  data-animation="translateX opacity"
+>
+  <a
+    class="grid h-16 w-16 cursor-pointer place-content-center rounded-md bg-white sm:h-20 sm:w-20"
+    href={href}
+    target={target ? '_blank' : '_self'}
+    aria-label={media}
+  >
+    <Icon
+      name={icon}
+      class={`text-clr-blue--dark ${isLarger ? 'w-8' : 'w-7'}`}
+    />
+  </a>
+  <div class="flex flex-col gap-2 sm:gap-4">
+    <h2 class="font-semibold md:text-lg">{heading}</h2>
+    <p>{text}</p>
+  </div>
+</div>

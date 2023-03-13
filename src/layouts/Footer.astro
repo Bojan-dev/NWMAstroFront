@@ -1,0 +1,151 @@
+---
+import '../components/global/GlobalStyles.astro';
+import logo from '/logo.svg';
+import footerMap from '../imgs/global/footer-map.png';
+import footerTruck from '../imgs/global/footer-truck.svg';
+import { Icon } from 'astro-icon';
+---
+
+<footer class="mt-24">
+  <div
+    class="my-container mx-auto mb-8 flex flex-col items-center gap-16 sm:grid sm:grid-cols-4 lg:mb-24 lg:grid-cols-3"
+  >
+    <div
+      class="home-section-heading flex flex-col items-center gap-3 motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:duration-500 sm:col-span-2 lg:col-auto lg:mx-auto lg:items-start"
+      data-section="footer"
+      data-animation="translateX opacity"
+    >
+      <a href="#">
+        <img
+          src={logo}
+          alt="No Worries Moving logo"
+          loading="lazy"
+          class="mb-5 w-28 lg:mb-3 lg:w-24"
+          width="96"
+          height="60"
+        />
+      </a>
+      <p>100 Forest Place #P37,</p>
+      <p>Oak Park, IL 60301,</p>
+      <a
+        href="tel:8449556683"
+        class="border-b border-transparent hover:border-clr-green"
+        >(844) 955 6683,</a
+      >
+      <a
+        href="mailto:mgak@noworriesmoving.com"
+        class="border-b border-transparent hover:border-clr-green"
+        >mgak@noworriesmoving.com</a
+      >
+      <div class="mt-2 flex gap-4">
+        <a
+          href="https://www.facebook.com/noworriesmoving.us "
+          rel="noopener"
+          target="_blank"
+          aria-label="Facebook"
+          class="grid place-content-center bg-clr-green px-5 py-2 text-white hover:bg-clr-green--dark"
+        >
+          <Icon name="grommet-icons:facebook-option" class="w-6" />
+        </a>
+        <a
+          href="https://www.instagram.com/noworriesmoving/"
+          rel="noopener"
+          target="_blank"
+          aria-label="Instagram"
+          class="grid place-content-center bg-clr-green px-5 py-2 text-white hover:bg-clr-green--dark"
+        >
+          <Icon name="mdi:instagram" class="w-6" />
+        </a>
+        <a
+          href="https://www.linkedin.com/company/noworriesmoving/"
+          rel="noopener"
+          target="_blank"
+          aria-label="Linkedin"
+          class="bg-clr-green px-5 py-2 text-white hover:bg-clr-green--dark"
+        >
+          <Icon name="grommet-icons:linkedin-option" class="w-6" />
+        </a>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-center gap-3 motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:duration-500 sm:col-span-2 lg:col-auto lg:mx-auto lg:mb-auto lg:items-start lg:pt-8"
+      data-animation="translateX opacity"
+    >
+      <p class="mb-3 text-h3 font-semibold text-clr-green">GO TO</p>
+      <a
+        href="services"
+        class="border-b-2 border-transparent hover:border-clr-green">Services</a
+      >
+      <a
+        href="pricing"
+        class="border-b-2 border-transparent hover:border-clr-green">Pricing</a
+      >
+      <a
+        href="free-boxes"
+        class="border-b-2 border-transparent hover:border-clr-green"
+        >Free Boxes</a
+      >
+      <a
+        href="reviews"
+        class="border-b-2 border-transparent hover:border-clr-green">Reviews</a
+      >
+      <a
+        href="contact"
+        class="border-b-2 border-transparent hover:border-clr-green">Contact</a
+      >
+    </div>
+    <div
+      class="flex flex-col items-center motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:duration-500 sm:col-span-2 sm:col-start-2 lg:col-auto lg:mx-auto lg:mb-auto lg:items-start lg:pt-8"
+      data-animation="translateX opacity"
+    >
+      <p class="mb-3 text-h3 font-semibold text-clr-green">
+        NO.1 IN CHICAGOLAND!
+      </p>
+      <img
+        src={footerMap}
+        alt="Map of the USA with the flag pointing to Chicago"
+        loading="lazy"
+        class="w-4/6 sm:w-full md:w-3/4"
+        width="280"
+        height="180"
+      />
+    </div>
+  </div>
+  <div
+    class="relative mx-auto grid h-56 place-items-end bg-[url('/footer-btm.svg')] bg-cover bg-bottom text-center text-white min-[2000px]:bg-[url('/footer-btm-extra.svg')]"
+  >
+    <div class="my-container mx-auto mb-8 flex w-full flex-col items-center">
+      <div class="flex gap-4">
+        <img
+          src={footerTruck}
+          alt="Moving van"
+          class="w-16 opacity-40 motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:delay-100 motion-safe:duration-500"
+          loading="lazy"
+          data-animation="translateX opacity"
+          width="65"
+          height="21"
+        />
+        <img
+          src={footerTruck}
+          alt="Moving van"
+          class="w-16 opacity-70 motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:delay-300 motion-safe:duration-500"
+          loading="lazy"
+          data-animation="translateX opacity"
+          width="65"
+          height="21"
+        />
+        <img
+          src={footerTruck}
+          alt="Moving van"
+          class="w-16 motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:delay-500 motion-safe:duration-500"
+          loading="lazy"
+          data-animation="translateX opacity"
+          width="65"
+          height="21"
+        />
+      </div>
+      <div class="mb-4 h-px w-full rounded-lg bg-white"></div>
+      <p>@2020 NoWorriesMoving. All rights reserved!</p>
+    </div>
+  </div>
+</footer>

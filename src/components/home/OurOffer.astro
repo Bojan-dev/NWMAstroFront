@@ -1,0 +1,244 @@
+---
+import '../global/GlobalStyles.astro';
+import Section from '../global/Section.astro';
+import OurOfferCard from './OurOfferCard.astro';
+import offerLocal from '../../imgs/home/offer-local.svg';
+import offerBoxes from '../../imgs/home/offer-boxes.svg';
+import offerStorage from '../../imgs/home/offer-storage.svg';
+import offerPacking from '../../imgs/home/offer-packing.svg';
+import offerLong from '../../imgs/home/offer-long.svg';
+import logo from '/logo.svg';
+import BtnOverall from '../UI/BtnOverall.astro';
+import { Icon } from 'astro-icon';
+
+export type OurOfferCardProps = {
+  img: string;
+  imgAlt: string;
+  heading: string;
+  text: string;
+  extraClasses?: string;
+  offerClass: string;
+  tranDelay: string;
+};
+
+const ourOfferCards: OurOfferCardProps[] = [
+  {
+    img: offerLocal,
+    imgAlt: 'Truck with a few boxes in it and a few boxes beside it',
+    heading: 'Local Move',
+    text: 'Our crews are specially trained to perform local moves efficiently and safely to save time and make your moving day go smoothly.',
+    offerClass: 'local',
+    tranDelay: 'delay-100',
+  },
+  {
+    img: offerBoxes,
+    imgAlt: 'Pile of boxes, suitcases, and other supplies',
+    heading: 'Boxes and Supplies',
+    text: 'As a company that has performed over thousands of moves in the last 15 years, we understand how important it is to have a reliable supplier...',
+    offerClass: 'boxes',
+    tranDelay: 'delay-300',
+  },
+  {
+    img: offerStorage,
+    imgAlt: 'A mover checking and counting a pile of boxes ',
+    heading: 'Secure Storage',
+    text: 'Clean and safe storage is available 24/7, your stuff will be safe with us. Insurance included!',
+    offerClass: 'storage',
+    tranDelay: 'lg:motion-safe:delay-500 sm:motion-safe:delay-100',
+  },
+  {
+    img: offerPacking,
+    imgAlt: 'Two movers arranging and putting boxes on a palette',
+    heading: 'Expert Packing',
+    text: 'Our Expert Packers have the experience and training to perform all types of full packing services.',
+    extraClasses: 'lg:col-start-3',
+    offerClass: 'packing',
+    tranDelay: 'lg:motion-safe:delay-100 sm:motion-safe:delay-300',
+  },
+  {
+    img: offerLong,
+    imgAlt:
+      'Trailer truck with a large box on it ready for a long-distance move',
+    heading: 'Long Distance Move',
+    text: 'No Worries Moving operates all over the USA from multiple locations which makes the organization of your interstate move easy and stress-free.',
+    extraClasses: 'lg:col-start-7 sm:col-start-3',
+    offerClass: 'long',
+    tranDelay: 'lg:motion-safe:delay-300 sm:motion-safe:delay-100',
+  },
+];
+---
+
+<Section
+  title="What we offer"
+  titleId="our-offer-title"
+  titleDes="Only the best for our customers!"
+  extraClasses="bg-clr-green--light py-16 relative"
+  isContainer={false}
+  dataAtt="our-offer"
+>
+  <div
+    class="my-container flex flex-col mx-auto text-center gap-10 sm:grid lg:grid-cols-12 sm:grid-cols-8"
+  >
+    {
+      ourOfferCards.map((card) => (
+        <OurOfferCard
+          img={card.img}
+          imgAlt={card.imgAlt}
+          heading={card.heading}
+          text={card.text}
+          extraClasses={card?.extraClasses}
+          offerClass={card.offerClass}
+          tranDelay={card.tranDelay}
+        />
+      ))
+    }
+  </div>
+  <div
+    class="our-offer-info hidden fixed bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-rem-100 w-11/12 z-50 rounded-2xl flex flex-col gap-6 p-6 sm:p-10 2xl:p-16 overflow-y-auto max-h-[90%]"
+  >
+    <div class="flex justify-between items-center">
+      <a href="/"
+        ><img
+          width="108"
+          height="67"
+          src={logo}
+          alt="No Worries Moving logo"
+          class="w-24"
+        />
+      </a>
+      <Icon
+        name="ic:round-close"
+        class="w-14 text-clr-error close-offer-info cursor-pointer hover:scale-110 duration-300 active:scale-100"
+      />
+    </div>
+    <div class="relative mt-16 sm:mt-10 flex flex-col items-center">
+      <h3
+        class="absolute font-black opacity-10 top-0 duration-500 select-none motion-safe:hover:-translate-y-full -translate-y-full sm:-translate-y-3/4 text-center text-4xl md:text-7xl lg:text-8xl 2xl:text-9xl"
+      >
+      </h3>
+      <div
+        class="relative border rounded-xl sm:rounded-[3rem] border-slate-200 w-full bg-white shadow-md shadow-slate-200 p-6 sm:p-9 flex gap-10 flex-col md:flex-row"
+      >
+        <div
+          class="border border-slate-200 rounded-xl sm:rounded-3xl p-7 py-4 max-h-80 overflow-y-auto w-full md:w-2/3"
+        >
+          <p
+            class="first-letter:text-xl first-letter:text-clr-green--dark first-letter:font-semibold"
+          >
+          </p>
+        </div>
+        <div
+          class="bg-clr-italic p-7 rounded-xl sm:rounded-3xl flex items-center justify-center w-full md:w-1/3"
+        >
+          <img class="w-1/2 md:w-5/6 offer-wrapper-img" />
+        </div>
+      </div>
+    </div>
+    <div class="mt-6 w-full flex justify-center">
+      <BtnOverall
+        href="tel:8449556683"
+        classes="text-h4 py-4 w-full lg:w-1/3 sm:w-1/2 text-center rounded-xl"
+        >Call Now</BtnOverall
+      >
+    </div>
+  </div>
+</Section>
+
+<script defer>
+  const offersTxt = new Map([
+    [
+      'local',
+      [
+        `A local move is typically one that occurs when moving between two locations within 50 miles or less, while an intrastate move occurs over a longer distance in the same state.  This is of course in comparison to an interstate move which takes place when moving across state lines.`,
+        `There are good movers and not-so-good movers, and it’s important to know the difference. It’s tempting to look for ways to save money on moving. Unfortunately, rogue movers prey on budget-conscious families by promising lower prices only to demand a significantly higher one once their belongings are on the truck.`,
+        `Like all moves, the cost of a local move is determined by your belongings – both how much you need to move and the delicacy of your items, should anything need specialized packaging and handling. Each moving company’s price may vary, but a home’s size will typically determine the number of people needed on a moving crew.`,
+      ],
+    ],
+    [
+      'boxes',
+      [
+        `The best way to pack for moving is to start earlier, rather than later. Our moving checklist suggests that you figure out your moving budget two months before the move.`,
+        `If you hire professionals, they will do an inventory too (in person or via a virtual survey), but you need to create your own inventory. This is a necessary step for several reasons, including figuring out what moving supplies you’ll need and in what quantities.`,
+        `About five weeks before the move and boxing up your things, figure out a timeline for the packing process. Plan to pack all non-essentials first. These include items you won’t need in the weeks leading up to the move, including books, home decor items and electronics.`,
+        `Use our packing calculator to get a good idea of just how much you’ll need in terms of packing supplies. This way, you can be sure to get what you need on the first run to the store. To use the calculator, simply plug in the number of bedrooms in your home, the number of adults moving, your packing style (basic, average, professional), and your lifestyle (minimalist, modest, pack rat). `,
+      ],
+    ],
+    [
+      'storage',
+      [
+        `It may be that there is a time frame in which you leave your old house and wait for the keys to your new home. During this time, self storage containers are probably the most obvious solution to ensure your worldly belongings are kept safe and insured.`,
+        `For smaller items of significant importance, or very close to your heart, i.e. expensive or sentimental jewellery and valuable papers for example, a safety deposit box will give you the absolute peace of mind you need. The last thing you want to fret about on a moving day is your great Aunt Rose’s sapphire necklace or your entire family’s birth certificates. Otherwise, you can leave those items with a trustworthy friend or family member.`,
+        `Alternatively, the essential small stuff (critical medication, jewellery, passports and paperwork) can stay with you. Carry them in a secure bag and don’t let it out of your view. Or perhaps- just for fun – wear every single item of jewellery you own and pretend you’re Elizabeth Taylor.`,
+        `During a hectic move, it’s easy to lose track of things. Make a record of valuables ahead of time, so you can do an item ‘headcount’ as you unpack. This organisational hack will ensure nothing gets ‘lost’ along the way. Create a spreadsheet, or failing that, some apps’ will do it for you, helping you keep track of everything you’re moving, and add photos and notes.`,
+      ],
+    ],
+    [
+      'packing',
+      [
+        `Packing all your possessions into boxes, bags, and more can be overwhelming. Make it a little bit easier on yourself by cutting back on clutter as much as possible. Before you pack a single box, do a merciless purge of unused or unnecessary items. You'll have less to pack, less to move, and less to unpack—and you'll start life in your new space with a clean slate.`,
+        `Start collecting new addresses, rental or purchase papers, moving contracts, and more in one folder. (Consider a hard copy, rather than a digital one, in case computer or phone batteries die during the move.) If any questions come up during the planning process or the move itself, you'll have the answer (and records of agreements, payments, and more) on hand.`,
+        `Ideally, you'll know about a move (even if you're not sure of the final destination) weeks or even months in advance. Start by packing off-season items and the items you won't miss. If you're moving in summer, you can pack winter coats in advance—and likely books and other once-in-a-while items. When it's finally time to move, many items will already be ready to go, giving you less to stress about.`,
+        `If you're hiring moving services, renting supplies, or hiring professionals such as painters or cleaners to work on the house, book early. Waiting to do so could mean paying a higher price, or not being able to get a truck or movers at all, particularly if it's peak moving season.`,
+      ],
+    ],
+    [
+      'long',
+      [
+        `A long distance move, like the local move, has no set definition. It differs based on your moving company and where you’re moving to. But as a general rule of thumb, if you’re moving more than 400 miles or moving out of your state, you can consider it a long distance move.`,
+        `A long-distance move should be started months before to prepare adequately. It is not merely enough to focus solely on packing possessions safely and carefully; you must also focus on the trip itself. Prior preparation for the long-distance move is a must. Be sure to plan navigation routes, hotel options, and additional stops.`,
+        `Update important documents like your license.   Changing your address requires updating your information in a lot of different places. However, it gets even more complicated when you’re moving a long distance. You may need to update your driver’s license and registration and other important documents. Make sure to plan ahead and research what all needs to be updated in plenty of time before your move.`,
+        `Label boxes with your name.   When you move long distance, your boxes will most likely be placed on a moving truck that includes boxes that belong to other families. This is actually fairly common. To keep your belongings from getting mixed up or dropped off at the wrong location, clearly label every box with your name. For boxes you’re very concerned about losing, you might even consider including your phone number, just in case the box is dropped at the wrong house.`,
+      ],
+    ],
+  ]);
+
+  const ourOfferBtns = Array.from(document.querySelectorAll('.our-offer'));
+  const overlay = document.querySelector('.overlay');
+  const offerWrapper = document.querySelector('.our-offer-info');
+  const closeOffer = document.querySelector('.close-offer-info');
+
+  const toggleOverlay = () => {
+    toggleClass(overlay, 'hidden');
+    toggleClass(offerWrapper, 'hidden');
+    toggleClass(htmlDoc, 'overflow-y-hidden');
+  };
+
+  [overlay, closeOffer].forEach((btn) =>
+    btn.addEventListener('click', toggleOverlay)
+  );
+
+  const handleOfferClick = (e) => {
+    const selectedOffer = document.querySelector(
+      `[data-offer="${e.target.dataset.offerBtn}"]`
+    );
+
+    offerWrapper.querySelector('h3').textContent =
+      selectedOffer.querySelector('h3').textContent;
+
+    offerWrapper.querySelector('.offer-wrapper-img').src =
+      selectedOffer.querySelector('img').src;
+
+    const selectedOfferTextArr = offersTxt.get(e.target.dataset.offerBtn);
+
+    const selectedOfferText = selectedOfferTextArr.reduce(
+      (acc, txt) =>
+        acc +
+        `${
+          txt === selectedOfferTextArr.at(-1)
+            ? `<p>${txt}</p>`
+            : `<p>${txt}</p> <br /> `
+        }`,
+      ''
+    );
+
+    offerWrapper
+      .querySelector('p')
+      .insertAdjacentHTML('afterbegin', selectedOfferText);
+
+    toggleOverlay();
+  };
+
+  ourOfferBtns.forEach((btn) =>
+    btn.addEventListener('click', handleOfferClick.bind(this))
+  );
+</script>

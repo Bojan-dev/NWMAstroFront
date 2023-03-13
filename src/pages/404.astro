@@ -1,0 +1,25 @@
+---
+import '../components/global/GlobalStyles.astro';
+import Navigation from '../layouts/Navigation.astro';
+import { Icon } from 'astro-icon';
+import Btn from '../components/UI/Btn.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  is404={true}
+  title="- 404!"
+  description="You're on a 404 page of No Worries Moving website. The best solution would probably be to go back. Have a good day!"
+>
+  <Navigation />
+  <main
+    class="grid h-screen min-h-[50em] place-content-center gap-7 bg-hero-not-found bg-cover bg-center pb-[10vh] text-center text-white"
+  >
+    <Icon name="bi:exclamation-triangle-fill" class="m-auto h-14" />
+    <h1 class="text-h1 font-bold">404. Page not Found!</h1>
+    <p>
+      Sorry, we cannot find this page, but don't worry, you can always go back.
+    </p>
+    <Btn href="/" classes="px-20 py-3 m-auto">Home Page</Btn>
+  </main>
+</Layout>

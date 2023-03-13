@@ -1,0 +1,44 @@
+---
+import { NumberCardProps } from './Numbers.astro';
+
+type OurNumbersCardProps = NumberCardProps & { cardNum: number };
+
+const {
+  img,
+  imgAlt,
+  imgW,
+  imgH,
+  textNum,
+  textNumTxt,
+  text,
+  cardNum,
+  textAnimDuration,
+} = Astro.props as OurNumbersCardProps;
+
+const extraClass = cardNum !== 0 && cardNum !== 1 ? 'sm:mt-14' : '';
+---
+
+<div
+  class={`relative text-white bg-clr-blue--dark w-full rounded-3xl flex flex-col items-center py-10 ${extraClass}`}
+>
+  <div
+    class="absolute top-0 w-28 rounded-full aspect-square bg-white -translate-y-1/2 border border-clr-italic shadow-numbers-shadow flex items-center justify-center"
+  >
+    <img
+      src={img}
+      alt={imgAlt}
+      class="max-w-[60%] max-h-[60%]"
+      loading="lazy"
+      width={imgW}
+      height={imgH}
+    />
+  </div>
+  <p class="font-semibold mt-10 text-h2_sm">
+    <span
+      data-num={textNum}
+      data-duration={textAnimDuration}
+      class="numbers-num">0</span
+    >{textNumTxt}
+  </p>
+  <p>{text}</p>
+</div>

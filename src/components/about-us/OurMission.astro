@@ -1,0 +1,49 @@
+---
+import Section from '../global/Section.astro';
+import MissionWrapper from './MissionWrapper.astro';
+import Circles from '../about-us/Circles.astro';
+import missionImg from '../../imgs/about-us/about-us-mission.svg';
+
+const missionsInfo = [
+  {
+    heading: 'Our way of thinking.',
+    text: "At No Worries Moving, we have a clear vision for the future of moving services. We decided that there is a better way to take care of our customers, and we're committed to making it a reality. Our vision is to offer more value, competitive pricing, pricing guarantees, and the ability to perform a better service for our customers.",
+    icon: 'ion:ios-eye',
+  },
+  {
+    heading: 'Dedicated to our job!',
+    text: "Our mission is to use our years of experience and our passion for what we do to provide a smooth, stress-free moving experience for our customers. We strive to be the best in the business, and we're dedicated to making sure that every customer is completely satisfied with their move.",
+    icon: 'fluent:target-arrow-16-filled',
+  },
+];
+---
+
+<Section
+  title="Vision and Mission"
+  titleId="our-mission-title"
+  titleDes="Providing worry-free relocations!"
+  extraClasses="bg-clr-blue text-white py-16"
+  isContainer={false}
+>
+  <div
+    class="my-container relative mx-auto flex flex-col gap-16 lg:grid lg:grid-cols-2 lg:gap-0"
+  >
+    <Circles classes="right-0 top-3/4 lg:top-1/2" />
+    <div class="flex flex-col gap-12 text-clr-text">
+      {
+        missionsInfo.map((mission) => (
+          <MissionWrapper
+            heading={mission.heading}
+            text={mission.text}
+            icon={mission.icon}
+          />
+        ))
+      }
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="lg:w-5/6 2xl:w-4/6">
+        <img src={missionImg} alt="" class="w-full" />
+      </div>
+    </div>
+  </div>
+</Section>

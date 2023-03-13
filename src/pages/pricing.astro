@@ -1,0 +1,68 @@
+---
+import '../components/global/GlobalStyles.astro';
+import Layout from '../layouts/Layout.astro';
+import '../components/global/GlobalStyles.astro';
+import moverBox from '../imgs/pricing/mover-box.png';
+import dotsCircle from '../imgs/pricing/dots-circle.png';
+import mover from '../imgs/pricing/calc-mover.png';
+import Calculator from '../components/pricing/Calculator';
+---
+
+<Layout title="- Pricing" description="Pricing Page" path="/pricing">
+  <main
+    class="mb-20 h-fit min-h-rem-55 bg-[url('/pricing-bg.svg')] bg-cover bg-center pt-48 text-center md:pt-60"
+  >
+    <div
+      class="my-container my-container-res relative mx-auto flex flex-col gap-24 md:gap-32"
+    >
+      <h1
+        class="z-10 flex flex-col gap-6 text-h3_md font-black tracking-wide text-white md:gap-12 md:text-xl"
+      >
+        <span
+          class="home-section-heading motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:duration-500"
+          data-animation="translateX opacity"
+          ><span
+            class="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-xl after:bg-clr-green md:after:bottom-1.5"
+            >'All-in-One'</span
+          > hourly rate,</span
+        >
+        <span
+          class="home-section-heading motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:delay-500 motion-safe:duration-500"
+          data-animation="translateX opacity"
+          >Fully <span
+            class="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-xl after:bg-clr-green md:after:bottom-1.5"
+            >controlled</span
+          > bill!</span
+        >
+      </h1>
+      <div class="relative mt-40 lg:mt-56">
+        <img
+          src={mover}
+          alt="Smiling mover wearing uniform points down"
+          width="430"
+          height="320"
+          class="absolute left-1/2 top-0 h-56 w-auto -translate-x-1/2 -translate-y-3/4 md:h-64 lg:h-72"
+        />
+        <div
+          class="relative flex flex-col items-center gap-12 border border-clr-italic bg-white px-6 py-10 shadow-card-shadow sm:rounded-3xl sm:p-12"
+        >
+          <Calculator client:only="react" />
+          <img
+            src={moverBox}
+            alt="Mover with the box in his hands"
+            width="86"
+            height="160"
+            class="absolute bottom-0 right-6 hidden w-auto sm:block sm:h-36 lg:right-14 lg:h-40"
+          />
+          <img
+            src={dotsCircle}
+            alt="A circle made of many dots"
+            width="235"
+            height="224"
+            class="absolute bottom-0 left-0 h-44 w-auto -translate-x-2/4 translate-y-3/4 sm:translate-y-2/4 lg:h-56"
+          />
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

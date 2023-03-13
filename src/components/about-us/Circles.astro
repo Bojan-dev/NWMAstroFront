@@ -1,0 +1,18 @@
+---
+const { classes } = Astro.props;
+---
+
+<div
+  class={`absolute ${classes} flex -translate-y-1/2 -translate-x-1/2 animate-pulse items-center justify-center`}
+>
+  <div class="absolute z-10 h-6 w-6 rounded-full bg-clr-green md:h-10 md:w-10">
+  </div>
+  <div
+    class="absolute z-20 h-12 w-12 rounded-full bg-clr-green opacity-30 md:h-20 md:w-20"
+  >
+  </div>
+  <div
+    class="absolute h-16 w-16 rounded-full border border-clr-italic md:h-28 md:w-28"
+  >
+  </div>
+</div>

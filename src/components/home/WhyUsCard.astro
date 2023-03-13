@@ -1,0 +1,129 @@
+---
+import '../global/GlobalStyles.astro';
+import { Icon } from 'astro-icon';
+import BtnOverall from '../UI/BtnOverall.astro';
+import { WhyUsCardProps } from './WhyUs.astro';
+
+type CardProps = WhyUsCardProps & { pageNum; numOfPages };
+
+const {
+  heading,
+  icon,
+  iconAlt,
+  text,
+  pros,
+  secondText = null,
+  btnText,
+  btnLink,
+  isBtnTargetBlank,
+  pageNum,
+  numOfPages,
+  imgs = null,
+  mainImg,
+  mainImgAlt,
+  mainImgW,
+  mainImgH,
+} = Astro.props as CardProps;
+
+const slideLine = Number((100 / numOfPages).toFixed(2));
+const slideLinePosition = slideLine * pageNum;
+---
+
+<style>
+  .triangle-bottom-right {
+    border-right: 0.275rem solid white;
+    border-top: 0.275rem solid transparent;
+  }
+</style>
+
+<div class="min-w-full z-10">
+  <div class="max-w-rem-100 mx-auto px-[7.5vw] min-h-full flex">
+    <div
+      class="relative rounded-xl p-8 shadow-card-shadow md:p-12 w-full flex bg-white gap-4 lg:gap-10 flex-col lg:flex-row"
+    >
+      <div class="flex flex-col gap-10 z-20">
+        <div>
+          <div class="flex w-full justify-between items-center sm:w-5/6">
+            <h3 class="text-h3 md:text-h3_md font-semibold tracking-wide">
+              {heading}
+            </h3>
+            <img
+              width="35"
+              height="33"
+              src={icon}
+              alt={iconAlt}
+              class="aspect-square"
+              loading="lazy"
+            />
+          </div>
+          <div
+            class="relative -translate-x-8 h-1 bg-clr-italic mt-4 md:-translate-x-12"
+          >
+            <div
+              class="absolute bg-clr-green h-full"
+              style={`width:${slideLine}%; left:${slideLinePosition}%`}
+            >
+            </div>
+            <div class="absolute right-0 triangle-bottom-right"></div>
+          </div>
+        </div>
+        {text && <p>{text}</p>}
+        <div class="flex flex-col gap-8 md:gap-5">
+          {
+            pros.map((prosText) => (
+              <div class="flex items-center gap-3">
+                <Icon
+                  name="ion:checkmark-done-circle"
+                  class="w-10 text-clr-green flex-none"
+                />
+                <p>{prosText}</p>
+              </div>
+            ))
+          }
+        </div>
+        {
+          imgs && (
+            <div class="flex gap-6">
+              {imgs.map((imgInfo) => (
+                <img
+                  width={imgInfo.imgW}
+                  height={imgInfo.imgH}
+                  src={imgInfo.img}
+                  alt={imgInfo.imgAlt}
+                  class="h-16 w-auto"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          )
+        }
+        {
+          secondText && (
+            <div class="flex flex-col gap-5 md:gap-7">
+              <p>{secondText}</p>
+              <BtnOverall
+                classes="px-6 py-3 rounded-xl max-w-fit"
+                target={isBtnTargetBlank}
+                href={btnLink}
+              >
+                {btnText}
+              </BtnOverall>
+            </div>
+          )
+        }
+      </div>
+      <div
+        class="max-w-md absolute mx-auto grid place-content-center opacity-10 lg:relative lg:opacity-100 lg:w-3/6 lg:opacity-1 inset-0 z-10"
+      >
+        <img
+          width={mainImgW}
+          height={mainImgH}
+          src={mainImg}
+          alt={mainImgAlt}
+          class="max-h-rem-40"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</div>

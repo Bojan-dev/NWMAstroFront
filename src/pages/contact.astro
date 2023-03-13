@@ -1,0 +1,152 @@
+---
+import '../components/global/GlobalStyles.astro';
+import Layout from '../layouts/Layout.astro';
+import wavingHand from '../imgs/contact/contact-waving-hand.svg';
+import IconWrap from '../components/UI/IconWrap.astro';
+import OurInfo from '../components/contact/OurInfo.astro';
+import ContactForm from '../components/contact/ContactForm';
+
+const ourInfoProps = [
+  {
+    heading: 'Our Location',
+    text: '100 Forest Place #P37, Oak Park, IL 60301',
+    icon: 'ic:baseline-my-location',
+    tranDelay: 'delay-100',
+    href: 'https://www.google.com/maps/place/No+Worries+Moving+Chicago/@41.6998976,-89.0568052,8z/data=!3m1!4b1!4m6!3m5!1s0x68398876eebe0f8f:0xaf3d3a20fc8dd4ec!8m2!3d41.7032936!4d-87.9357745!16s%2Fg%2F11tf3d0z_9',
+    target: true,
+    media: 'Our Location',
+  },
+  {
+    heading: 'Phone Number',
+    text: '(844) 955 6683',
+    icon: 'ic:baseline-local-phone',
+    tranDelay: 'delay-300',
+    href: 'tel:8449556683',
+    media: 'Phone Number',
+  },
+  {
+    heading: 'Email Address',
+    text: 'mgak@noworriesmoving.com',
+    icon: 'ion:ios-email',
+    isLarger: true,
+    tranDelay: 'delay-500',
+    href: 'mailto:mgak@noworriesmoving.com',
+    media: 'Phone Address',
+  },
+];
+---
+
+<style>
+  @keyframes wave-animation {
+    3% {
+      transform: rotate(0deg);
+    }
+    6% {
+      transform: rotate(14deg);
+    }
+    9% {
+      transform: rotate(-8deg);
+    }
+    12% {
+      transform: rotate(14deg);
+    }
+    15% {
+      transform: rotate(-4deg);
+    }
+    18% {
+      transform: rotate(10deg);
+    }
+    21% {
+      transform: rotate(0deg);
+    }
+    24% {
+      transform: rotate(0deg);
+    }
+  }
+
+  .wave-hand {
+    -webkit-animation: wave-animation 6.5s ease-in-out both infinite;
+    animation-name: wave-animation 6.5s ease-in-out both infinite;
+  }
+</style>
+
+<Layout title="- Contact" description="Contact Page" path="/contact">
+  <div class="absolute top-0 left-0 min-h-[125px] w-full bg-clr-blue"></div>
+  <div class="my-container mx-auto">
+    <main
+      class="mx-auto mt-52 mb-20 grid-cols-2 rounded-3xl text-center sm:text-left lg:grid"
+    >
+      <div
+        class="flex flex-col justify-center gap-16 rounded-t-3xl border border-clr-blue--dark bg-clr-blue--dark p-12 text-white shadow-process-shadow lg:rounded-r-none lg:rounded-l-3xl"
+      >
+        <div class="flex flex-col gap-7 md:gap-10">
+          <div
+            class="flex flex-col gap-5 motion-safe:translate-y-1/2 motion-safe:opacity-0 motion-safe:duration-500 sm:w-fit"
+            data-animation="translateY opacity"
+          >
+            <div class="mx-auto h-1 w-16 rounded-xl bg-clr-green sm:m-0"></div>
+            <h1
+              class="relative gap-4 text-h3_md font-black tracking-wide md:text-xl_height xl:flex xl:flex-col"
+            >
+              Love to hear from you, <span>Get in touch!</span><span
+                class="right-0 mt-4 block sm:mt-0 sm:inline-block sm:translate-x-1/2 xl:absolute xl:translate-x-150"
+                ><img
+                  src={wavingHand}
+                  alt="Waving hand"
+                  class="shake-top wave-hand mx-auto w-10 md:w-14"
+                /></span
+              >
+            </h1>
+          </div>
+          <div
+            class="flex flex-col gap-9 motion-safe:translate-y-1/2 motion-safe:opacity-0 motion-safe:duration-500"
+            data-animation="translateY opacity"
+          >
+            <p>
+              We are here to answer all of your questions, so feel free to ask
+              us whatever you want. Get in Touch with us if you have any
+              questions, and we will get back to you as soon as possible.
+            </p>
+            <div class="flex justify-center gap-3 sm:justify-start">
+              <IconWrap
+                href="https://www.facebook.com/noworriesmoving.us"
+                icon="grommet-icons:facebook-option"
+                media="Facebook"
+                classes="bg-clr-green hover:bg-white hover:text-clr-green"
+              />
+              <IconWrap
+                href="https://www.instagram.com/noworriesmoving/"
+                icon="mdi:instagram"
+                media="Instagram"
+                classes="bg-clr-green hover:bg-white hover:text-clr-green"
+              />
+              <IconWrap
+                href="https://www.linkedin.com/company/noworriesmoving/"
+                icon="grommet-icons:linkedin-option"
+                media="Linkedin"
+                classes="bg-clr-green hover:bg-white hover:text-clr-green"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-10 sm:gap-6">
+          {
+            ourInfoProps.map((info) => (
+              <OurInfo
+                heading={info.heading}
+                text={info.text}
+                icon={info.icon}
+                delayCl={info.tranDelay}
+                href={info.href}
+                isLarger={info.isLarger}
+                target={info.target}
+                media={info.media}
+              />
+            ))
+          }
+        </div>
+      </div>
+      <ContactForm client:idle />
+    </main>
+  </div>
+</Layout>

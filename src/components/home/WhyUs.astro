@@ -1,0 +1,309 @@
+---
+import '../../components/global/GlobalStyles.astro';
+import Section from '../global/Section.astro';
+import WhyUsCard from './WhyUsCard.astro';
+import { Icon } from 'astro-icon';
+import discountIcon from '../../imgs/home/discount-icon.svg';
+import experienceIcon from '../../imgs/home/experience-icon.svg';
+import supportIcon from '../../imgs/home/support-icon.svg';
+import fmcsa from '../../imgs/global/green-fmcsa.png';
+import promover from '../../imgs/global/green-promover.png';
+import bbb from '../../imgs/global/green-bbb.png';
+import hourlyRate from '../../imgs/home/hourly-rate.png';
+import experience from '../../imgs/home/experience-stars.png';
+import customersSupport from '../../imgs/home/customers-support.png';
+
+export type WhyUsCardProps = {
+  heading: string;
+  icon: string;
+  iconAlt: string;
+  text?: string;
+  pros: string[];
+  secondText?: string;
+  btnText?: string;
+  btnLink?: string;
+  isBtnTargetBlank?: boolean;
+  imgs?: { img: string; imgAlt: string; imgW: string; imgH: string }[];
+  mainImg?: string;
+  mainImgAlt?: string;
+  mainImgW: string;
+  mainImgH: string;
+};
+
+const whyUsCards: WhyUsCardProps[] = [
+  {
+    heading: "'All-in-One' hourly rate",
+    icon: discountIcon,
+    iconAlt: 'Scissors cutting money',
+    text: "Read about the benefits of our new 'All-in-One' hourly rate pricing system:",
+    pros: [
+      'All of your moving expenses are covered in our hourly rate.',
+      'No extra charges for truck, fuel, mileage, equipment, tolls, etc.',
+      'Transparent pricing with no hidden charges.',
+      'Full control of the total cost of your move.',
+    ],
+    secondText:
+      'Calculate your moving price and get your special discount offer:',
+    btnText: 'Free Estimate',
+    btnLink: 'pricing',
+    mainImg: hourlyRate,
+    mainImgAlt: 'Man holding the laptop with No Worries Moving logo on it',
+    mainImgW: '400',
+    mainImgH: '460',
+  },
+  {
+    heading: 'Team full of experience',
+    icon: experienceIcon,
+    iconAlt: '15 years of experience badge',
+    pros: [
+      'We are attacking digit of 50,000 moves (more then 45,000 at the moment).',
+      'More then 15 years of experience on this field, with many of our goals achieved.',
+      'We are officially licensed by FMCSA and PROMOVER.',
+    ],
+    imgs: [
+      { img: fmcsa, imgAlt: 'fmcsa logo', imgW: '149', imgH: '156' },
+      { img: promover, imgAlt: 'promover logo', imgW: '146', imgH: '155' },
+      // { img: bbb, imgAlt: 'bbb logo', imgW: '103', imgH: '155' },
+    ],
+    secondText: 'Check us out at Google review platform:',
+    btnText: 'Customers Reviews',
+    btnLink:
+      'https://www.google.com/search?q=noworriesmoving&oq=n&aqs=chrome.1.69i60j69i59l3j69i60l4.951j0j7&sourceid=chrome&ie=UTF-8#lrd=0x68398876eebe0f8f:0xaf3d3a20fc8dd4ec,1,,,',
+    isBtnTargetBlank: true,
+    mainImg: experience,
+    mainImgAlt:
+      'Mover loading the truck with arrows behind symbolizes growth of the company',
+    mainImgW: '440',
+    mainImgH: '480',
+  },
+  {
+    heading: 'Customers support program',
+    icon: supportIcon,
+    iconAlt: 'Hand holding person/customer',
+    text: 'Through this long-standing process of work, we have managed to provide our clients with full support for anything they need.',
+    pros: [
+      'Fully supported at any time of day!',
+      'There are many ways to reach us (phone, mail, social networks, etc.)',
+      'We always cherish friendly relationships with our clients.',
+      'Full control of the total cost of your move.',
+    ],
+    secondText: 'Wanna reach us? Here you can:',
+    btnText: 'Contact Us',
+    btnLink: 'tel:8449556683',
+    mainImg: customersSupport,
+    mainImgAlt:
+      'A Customer Service Representative with a headset on speaking with a customer',
+    mainImgW: '350',
+    mainImgH: '480',
+  },
+];
+---
+
+<Section
+  title="Why Us?"
+  titleId="why-us-title"
+  titleDes="We are always there to meet the needs of our clients!"
+  isContainer={false}
+  dataAtt="why-us"
+>
+  <div class="relative">
+    <div
+      class="absolute w-full top-1/2 -translate-y-1/2 h-1/5 bg-clr-blue motion-safe:duration-500 motion-safe:opacity-0 motion-safe:translate-y-1/2 ease-out"
+      data-animation="translateY opacity"
+    >
+    </div>
+
+    <div
+      data-cards={whyUsCards.length + 2 - 1}
+      class="flex slider ease-in-out duration-1000"
+    >
+      <WhyUsCard
+        heading={whyUsCards.at(-1).heading}
+        icon={whyUsCards.at(-1).icon}
+        iconAlt={whyUsCards.at(-1).iconAlt}
+        text={whyUsCards.at(-1)?.text}
+        pros={whyUsCards.at(-1).pros}
+        secondText={whyUsCards.at(-1)?.secondText}
+        btnText={whyUsCards.at(-1)?.btnText}
+        btnLink={whyUsCards.at(-1)?.btnLink}
+        isBtnTargetBlank={whyUsCards.at(-1)?.isBtnTargetBlank}
+        pageNum={whyUsCards.length - 1}
+        numOfPages={whyUsCards.length}
+        mainImg={whyUsCards.at(-1).mainImg}
+        mainImgAlt={whyUsCards.at(-1).mainImgAlt}
+        mainImgW={whyUsCards.at(-1).mainImgW}
+        mainImgH={whyUsCards.at(-1).mainImgH}
+      />
+      {
+        whyUsCards.map((cardInfo, i) => (
+          <WhyUsCard
+            heading={cardInfo.heading}
+            icon={cardInfo.icon}
+            iconAlt={cardInfo.iconAlt}
+            text={cardInfo?.text}
+            pros={cardInfo.pros}
+            secondText={cardInfo?.secondText}
+            btnText={cardInfo?.btnText}
+            btnLink={cardInfo?.btnLink}
+            isBtnTargetBlank={cardInfo?.isBtnTargetBlank}
+            pageNum={i}
+            numOfPages={whyUsCards.length}
+            imgs={cardInfo?.imgs}
+            mainImg={cardInfo.mainImg}
+            mainImgAlt={cardInfo.mainImgAlt}
+            mainImgW={cardInfo.mainImgW}
+            mainImgH={cardInfo.mainImgH}
+          />
+        ))
+      }
+      <WhyUsCard
+        heading={whyUsCards[0].heading}
+        icon={whyUsCards[0].icon}
+        iconAlt={whyUsCards[0].iconAlt}
+        text={whyUsCards[0]?.text}
+        pros={whyUsCards[0].pros}
+        secondText={whyUsCards[0]?.secondText}
+        btnText={whyUsCards[0]?.btnText}
+        btnLink={whyUsCards[0]?.btnLink}
+        isBtnTargetBlank={whyUsCards[0]?.isBtnTargetBlank}
+        pageNum={0}
+        numOfPages={whyUsCards.length}
+        mainImg={whyUsCards[0].mainImg}
+        mainImgAlt={whyUsCards[0].mainImgAlt}
+        mainImgW={whyUsCards[0].mainImgW}
+        mainImgH={whyUsCards[0].mainImgH}
+      />
+    </div>
+    <div
+      class="absolute w-full max-w-rem-100 h-1/5 hidden sm:flex justify-between items-center -translate-y-1/2 top-1/2 -translate-x-1/2 left-1/2 z-30"
+    >
+      <Icon
+        name="ic:twotone-keyboard-arrow-left"
+        class="text-white h-1/2 cursor-pointer slider--left-arrow hover:scale-110"
+      /><Icon
+        name="ic:twotone-keyboard-arrow-right"
+        class="text-white h-1/2 cursor-pointer slider--right-arrow hover:scale-110"
+      />
+    </div>
+  </div>
+  <div class="flex justify-center items-center gap-4 mt-8 slide-picker">
+    <Icon
+      name="ic:twotone-keyboard-arrow-left"
+      class="text-white cursor-pointer bg-clr-green slider--left-arrow h-16 w-16 block sm:hidden mr-3"
+    />
+    {
+      whyUsCards.map((_, i) => (
+        <div
+          data-slide={i + 2}
+          class={`w-4 h-4 sm:w-5 sm:h-5 rounded-full cursor-pointer ease-in-out duration-500 ${
+            i === 0 ? 'bg-clr-green' : 'bg-clr-italic'
+          }`}
+        />
+      ))
+    }
+    <Icon
+      name="ic:twotone-keyboard-arrow-right"
+      class="text-white cursor-pointer bg-clr-green slider--right-arrow h-16 w-16 sm:hidden ml-3"
+    />
+  </div>
+</Section>
+
+<script defer>
+  const slider = document.querySelector('.slider');
+  const sliderClasses = ['ease-in-out', 'duration-1000'];
+  const leftArrs = document.querySelectorAll('.slider--left-arrow');
+  const rightArrs = document.querySelectorAll('.slider--right-arrow');
+  const slidePicker = document.querySelector('.slide-picker');
+  const slidePickers = Array.from(slidePicker.children).filter(
+    (el) => el.nodeName.toLocaleLowerCase() === 'div'
+  );
+  const numOfSlider = Number(slider.dataset.cards);
+  let currPage = 1;
+  let isPageChanging = false;
+  let sliderInterval;
+
+  const handleTranslate = (percentage) => {
+    slider.style.transform = `translateX(${-percentage * 100}%)`;
+  };
+  handleTranslate(currPage);
+
+  const startSliderInterval = () => {
+    clearInterval(sliderInterval);
+    sliderInterval = setInterval(() => {
+      handleArrClick(true);
+    }, 20 * 1000);
+  };
+
+  startSliderInterval();
+
+  const handleSlidePicker = (target) => {
+    slidePickers.forEach((picker) => {
+      picker.classList.remove('bg-clr-green');
+      picker.classList.add('bg-clr-italic');
+    });
+    target.classList.remove('bg-clr-italic');
+    target.classList.add('bg-clr-green');
+  };
+
+  const handleArrClick = (isArrRight) => {
+    if (isPageChanging) return;
+
+    startSliderInterval();
+
+    isPageChanging = true;
+
+    if (isArrRight) {
+      currPage++;
+    } else {
+      currPage--;
+    }
+
+    if (!slider.classList.contains('ease-in-out')) {
+      sliderClasses.forEach((cl) => slider.classList.add(cl));
+    }
+
+    handleTranslate(currPage);
+  };
+
+  const handlePickerClick = (e) => {
+    if (!e.target.dataset.slide || isPageChanging) return;
+    if (currPage === e.target.dataset.slide - 1) return;
+
+    startSliderInterval();
+
+    isPageChanging = true;
+
+    currPage = e.target.dataset.slide - 1;
+
+    if (!slider.classList.contains('ease-in-out')) {
+      sliderClasses.forEach((cl) => slider.classList.add(cl));
+    }
+
+    handleTranslate(currPage);
+  };
+
+  leftArrs.forEach((arrow) =>
+    arrow.addEventListener('click', handleArrClick.bind(this, false))
+  );
+  rightArrs.forEach((arrow) =>
+    arrow.addEventListener('click', handleArrClick.bind(this, true))
+  );
+  slidePicker.addEventListener('click', handlePickerClick);
+
+  slider.addEventListener('transitionend', () => {
+    if (currPage === numOfSlider) {
+      sliderClasses.forEach((cl) => slider.classList.remove(cl));
+      currPage = 1;
+      handleTranslate(currPage);
+    }
+    if (currPage === 0) {
+      sliderClasses.forEach((cl) => slider.classList.remove(cl));
+      currPage = numOfSlider - 1;
+      handleTranslate(currPage);
+    }
+
+    isPageChanging = false;
+
+    handleSlidePicker(slidePickers[currPage - 1]);
+  });
+</script>

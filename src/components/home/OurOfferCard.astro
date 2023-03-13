@@ -1,0 +1,35 @@
+---
+import { OurOfferCardProps } from './OurOffer.astro';
+
+const { img, imgAlt, heading, text, extraClasses, offerClass, tranDelay } =
+  Astro.props as OurOfferCardProps;
+---
+
+<div
+  class={`max-w-rem-27 flex col-span-4 items-center flex-col gap-6 justify-between py-10 px-6 border border-slate-200 hover:bg-white hover:border-clr-green 
+    mx-auto ${
+      extraClasses ?? ''
+    } motion-safe:opacity-0 motion-safe:duration-500 motion-safe:-translate-x-1/2 ${tranDelay}`}
+  data-offer={offerClass}
+  data-animation="translateX opacity"
+>
+  <div
+    class="w-3/6 rounded-full aspect-square border-2 border-clr-green flex items-center justify-center bg-white"
+  >
+    <img
+      class="w-4/6"
+      src={img}
+      alt={imgAlt}
+      loading="lazy"
+      width="125"
+      height="100"
+    />
+  </div>
+  <h3 class="text-h4 md:text-h3 font-semibold">{heading}</h3>
+  <p>{text}</p>
+  <button
+    type="button"
+    class={`hover:bg-clr-green--dark text-white font-semibold text-lg bg-clr-green py-2 px-10 sm:px-6 font-light cursor-pointer our-offer`}
+    data-offer-btn={offerClass}>Read More</button
+  >
+</div>

@@ -1,0 +1,150 @@
+---
+import Section from '../global/Section.astro';
+import serviceLocal from '../../imgs/services/services-local.png';
+import serviceLong from '../../imgs/services/services-long.png';
+import serviceBoxes from '../../imgs/services/services-boxes.png';
+import serviceOffice from '../../imgs/services/services-office.png';
+
+type OurServicesCardProps = {
+  heading: string;
+  subHeading: string;
+  text: string;
+  img: string;
+  imgAlt: string;
+  imgW: string;
+  imgH: string;
+};
+
+const ourServicesCards: OurServicesCardProps[] = [
+  {
+    heading: 'Local Move',
+    subHeading: 'Move inside one country',
+    text: "Our crews are specially trained to perform local moves efficiently and safely to save time and make your moving day go smoothly. Our team of personal moving assistants are going to work closely with you to make sure we meet all of your needs and provide you with an enjoyable moving experience. Instead of having a long breakdown of your local move costs, our 'All-in-one' moving rate system will give you full control of the final total cost, making it transparent and easy to understand. We’re happy to serve you and our neighborhood. See you soon!",
+    img: serviceLocal,
+    imgAlt:
+      'The green-colored US map with the Illinois state colored blue and a moving truck moving over it',
+    imgW: '289',
+    imgH: '176',
+  },
+  {
+    heading: 'Long Distance Move',
+    subHeading: 'Move across whole US territory',
+    text: ' Worries Moving operates all over the USA from multiple locations which makes the organization of your interstate move easy and stress-free. Our crew will pack and protect your belongings with special attention to avoid even the smallest scratch. Your personal moving assistant will keep you updated for every step in this process until all of your belongings are reassembled and placed at the right spot in your new home. We’re excited to travel and explore the country with you and your family',
+    img: serviceLong,
+    imgAlt:
+      'The green-colored US map with all the states from Pennsylvania to Nevada colored blue and a moving truck moving over it.',
+    imgW: '289',
+    imgH: '170',
+  },
+  {
+    heading: 'Commercial Move',
+    subHeading: 'If you need to move your business',
+    text: 'No Worries Moving is happy to build business-to-business relationships with your company and help relocate your assets. We are trained for any type of business you run. We are ready to handle all kinds of heavy items or pack and protect your fragile inventory. We are highly motivated to earn your business again and help your business grow. Hope to hear back from you soon!',
+    img: serviceBoxes,
+    imgAlt: 'Three boxes filled with stuff prepared for moving.',
+    imgW: '289',
+    imgH: '167',
+  },
+  {
+    heading: 'Moving Boxes and Supplies',
+    subHeading: 'All other kind of move',
+    text: 'As a company that has performed over thousands of moves in the last 15 years, we understand how important it is to have a reliable supplier for the needs of your business. We are proud to bring you moving boxes and supplies for the most affordable price at the best quality. Our goal is not to make an extra profit but to provide you all needed materials to prepare yourself for your move day the best you can',
+    img: serviceOffice,
+    imgAlt:
+      'A man doing an office move while woman is filling up the boxes for a move',
+    imgW: '289',
+    imgH: '94',
+  },
+];
+---
+
+<Section
+  title="Our Services"
+  titleId="our-services"
+  titleDes="A list of services we offer!"
+>
+  <div class="mt-16 flex flex-col gap-20 text-center text-white">
+    {
+      ourServicesCards.map((service, i) => {
+        const isOdd = (i + 1) % 2;
+        const serviceLink = `service-${service.heading
+          .toLowerCase()
+          .replaceAll(' ', '-')}`;
+
+        return (
+          <>
+            <div
+              class={`${
+                isOdd ? 'bg-clr-blue--dark' : 'bg-clr-blue'
+              } lg:space-between  relative flex grid-cols-4 flex-col items-center gap-7 rounded-3xl p-12 px-8 ease-out motion-safe:opacity-0 motion-safe:duration-1000 md:px-12 lg:grid ${
+                isOdd
+                  ? 'motion-safe:-translate-x-1/2'
+                  : 'motion-safe:translate-x-1/2'
+              } `}
+              data-animation={`${
+                isOdd ? 'translateX' : 'translateXNeg'
+              } opacity`}
+              id={serviceLink}
+            >
+              <div
+                class="bg-clr-green absolute top-0 left-1/2 h-2.5 w-36 -translate-x-1/2 rounded-b-xl"
+                data-animation="child"
+              />
+              <p
+                class={`text-6xl font-black leading-none opacity-10 sm:text-7xl  lg:hidden`}
+              >
+                0{i + 1}
+              </p>
+              <div
+                class={`flex flex-col items-center gap-7  lg:col-span-2 ${
+                  isOdd
+                    ? 'lg:order-first lg:items-start lg:text-left'
+                    : 'lg:order-last lg:items-end lg:text-right'
+                }`}
+              >
+                <div>
+                  <p class="mb-1">{service.subHeading}</p>
+                  <h3 class="text-h3_md font-semibold">{service.heading}</h3>
+                </div>
+                <div class="bg-clr-green h-px w-12 rounded-xl" />
+                <p>{service.text}</p>
+              </div>
+              <p class="hidden text-6xl font-black leading-none opacity-10 sm:text-9xl lg:block">
+                0{i + 1}
+              </p>
+              <div
+                class={`relative mt-9 grid w-full place-items-center lg:mt-0 ${
+                  isOdd ? 'lg:order-last ' : 'lg:order-first'
+                }`}
+              >
+                <div
+                  class={`z-10 grid aspect-square w-11/12 place-items-center rounded-3xl border-8 bg-white sm:w-4/6 md:w-1/2 lg:w-full ${
+                    isOdd ? 'border-clr-blue--dark' : 'border-clr-blue'
+                  } `}
+                >
+                  <img
+                    src={service.img}
+                    alt={service.imgAlt}
+                    class="w-5/6"
+                    width={service.imgW}
+                    height={service.imgH}
+                  />
+                </div>
+                <div
+                  class={`absolute top-0 aspect-square w-1/2 -translate-y-2 rounded-3xl bg-white sm:w-2/6 sm:-translate-y-3 lg:top-auto lg:w-4/6  lg:translate-y-0 ${
+                    isOdd
+                      ? 'lg:left-0 lg:-translate-x-4'
+                      : 'lg:right-0 lg:translate-x-4'
+                  }`}
+                />
+              </div>
+            </div>
+            {i + 1 !== ourServicesCards.length && (
+              <div class="bg-clr-italic mx-auto h-px w-1/6" />
+            )}
+          </>
+        );
+      })
+    }
+  </div>
+</Section>

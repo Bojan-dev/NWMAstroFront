@@ -1,0 +1,22 @@
+---
+import { Icon } from 'astro-icon';
+
+type PathProp = {
+  href: string;
+  icon: string;
+  media: string;
+  classes: string[];
+};
+
+const { href, icon, media, classes } = Astro.props as PathProp;
+---
+
+<a
+  href={href}
+  rel="noopener"
+  target="_blank"
+  class={`grid h-9 w-9 place-items-center rounded-full text-lg ${classes}`}
+  aria-label={media}
+>
+  <Icon name={icon} class="shake-top w-5" />
+</a>

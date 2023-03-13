@@ -1,0 +1,55 @@
+---
+const {
+  itemsPlacement,
+  lrside,
+  tbside,
+  direction,
+  moveV,
+  translateCircleY,
+  translateLineY,
+  translateLineX,
+  linesDirection,
+  rotate,
+  rotateOrigin,
+  textLinePos,
+  textLineX,
+  textLineY,
+  textAlign,
+  textTranslateX,
+  firstText,
+  secondText,
+} = Astro.props;
+---
+
+<div
+  class={`hidden md:flex absolute ${itemsPlacement} ${lrside} ${tbside} ${direction} ${moveV}`}
+>
+  <div
+    class={`w-5 h-5 bg-clr-green sm:bg-white border-white sm:border-clr-green z-10 rounded-full border-2  ${translateCircleY}`}
+  >
+  </div>
+  <div
+    class={`relative flex ${linesDirection} ${direction} ${translateLineY} ${translateLineX} h-10 `}
+  >
+    <div class={`w-0.5 h-14 bg-white ${rotateOrigin} ${rotate}`}></div>
+    <div
+      class={`relative flex items-center ${textLinePos} ${textLineX} ${textLineY} `}
+    >
+      <div class="h-0.5 w-[22.5vw] max-w-md self-start bg-white"></div>
+      <div
+        class={`absolute w-full flex flex-col gap-2 ${textAlign} ${textTranslateX}`}
+      >
+        <p
+          class="place-self-auto text-sm font-semibold uppercase md:place-self-center lg:place-self-auto"
+        >
+          {firstText}
+        </p>
+        <p
+          class="place-self-auto text-sm font-semibold uppercase md:place-self-center lg:place-self-auto"
+        >
+          {secondText}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

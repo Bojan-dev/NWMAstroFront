@@ -1,0 +1,164 @@
+---
+import '../global/GlobalStyles.astro';
+import NumbersCard from './NumbersCard.astro';
+import numbersMoves from '../../imgs/home/numbers-moves.svg';
+import numbersExperience from '../../imgs/home/numbers-experience.svg';
+import numbersSatisfactory from '../../imgs/home/numbers-satisfactory.svg';
+import numbersSave from '../../imgs/home/numbers-save.svg';
+import numbersLadder from '../../imgs/home/numbers-ladder.png';
+
+export type NumberCardProps = {
+  img: string;
+  imgAlt: string;
+  imgW: number;
+  imgH: number;
+  textNum: string;
+  textNumTxt?: string;
+  text: string;
+  textAnimDuration: number;
+};
+
+const numberCards: NumberCardProps[] = [
+  {
+    img: numbersMoves,
+    imgAlt: 'Two movers moving a couch',
+    imgW: 66,
+    imgH: 52,
+    textNum: '45032',
+    text: 'Moves Done',
+    textAnimDuration: 1750,
+  },
+  {
+    img: numbersExperience,
+    imgAlt: 'A man standing proudly with a medal on his chest',
+    imgW: 58,
+    imgH: 66,
+    textNum: '15',
+    textNumTxt: ' years',
+    text: 'of experience',
+    textAnimDuration: 1250,
+  },
+  {
+    img: numbersSatisfactory,
+    imgAlt: 'Green happy smile emoji',
+    imgW: 66,
+    imgH: 66,
+    textNum: '98',
+    textNumTxt: '%',
+    text: 'Satisfactory',
+    textAnimDuration: 1500,
+  },
+  {
+    img: numbersSave,
+    imgAlt: 'The progress line placed on a pile of coins going up',
+    imgW: 56,
+    imgH: 66,
+    textNum: '1235632',
+    textNumTxt: '$',
+    text: 'Customer Save',
+    textAnimDuration: 2000,
+  },
+];
+---
+
+<section
+  aria-labelledby="our-numbers"
+  class="my-container mx-auto my-28 text-base"
+>
+  <div
+    class="relative block rounded-3xl border-clr-italic lg:grid lg:grid-cols-3 lg:gap-20 lg:border lg:px-8 xl:px-12"
+  >
+    <div class="relative lg:pt-8 xl:pt-12">
+      <div class="flex flex-col items-center gap-4 lg:items-start lg:gap-3">
+        <p class="text-clr-green">No Worries Moving</p>
+        <h2
+          id="our-numbers"
+          class="home-section-heading text-h2_md font-black md:text-xxl"
+          data-section="numbers"
+        >
+          Numbers
+        </h2>
+        <div class="h-0.5 w-10 rounded bg-clr-green"></div>
+      </div>
+      <p class="mt-8 text-center lg:text-left">
+        We keep improving our company and our services by working towards goals
+        day by day.
+      </p>
+      <div
+        class="absolute top-0 right-0 hidden h-full w-px translate-x-8 bg-clr-italic lg:block"
+      >
+      </div>
+      <img
+        src={numbersLadder}
+        alt="Man climbing up the ladder trying to reach the star"
+        class="absolute bottom-0 left-1/2 hidden h-1/2 -translate-x-1/2 lg:block"
+        loading="lazy"
+        width="265"
+        height="302"
+      />
+    </div>
+
+    <div
+      class="mt-24 flex flex-col gap-24 sm:grid sm:grid-cols-2 sm:gap-10 lg:col-span-2 lg:mt-0 lg:mt-14 lg:py-8 xl:py-12"
+    >
+      {
+        numberCards.map((card, i) => (
+          <NumbersCard
+            img={card.img}
+            imgAlt={card.imgAlt}
+            imgW={card.imgW}
+            imgH={card.imgH}
+            textNum={card.textNum}
+            textNumTxt={card?.textNumTxt}
+            text={card.text}
+            cardNum={i}
+            textAnimDuration={card.textAnimDuration}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script defer>
+  const allNumbers = Array.from(document.querySelectorAll('.numbers-num'));
+  const numOptions = {
+    rootMargin: '0px',
+    treshold: 1,
+  };
+
+  const counterAnimation = (countNum, start, end, duration) => {
+    let startTimestamp = 0;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      let progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      countNum.textContent = Math.floor(
+        progress * (end - start) + start
+      ).toLocaleString('en-US');
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    };
+    requestAnimationFrame(step);
+  };
+
+  const numObserveFun = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        counterAnimation(
+          entry.target,
+          0,
+          +entry.target.dataset.num,
+          +entry.target.dataset.duration
+        );
+        numObserver.unobserve(entry.target);
+      }
+    });
+  };
+
+  const numObserver = new IntersectionObserver(numObserveFun, numOptions);
+
+  allNumbers.forEach((num) => {
+    numObserver.observe(num);
+  });
+</script>

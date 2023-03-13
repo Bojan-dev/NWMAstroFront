@@ -1,0 +1,329 @@
+---
+import '../global/GlobalStyles.astro';
+import Section from '../global/Section.astro';
+import { Icon } from 'astro-icon';
+import testimonialsSmiles from '../../imgs/home/testimonials-smiles.svg';
+import firstPerson from '../../imgs/home/testimonials-person1.png';
+import secondPerson from '../../imgs/home/testimonials-person2.png';
+import thirdPerson from '../../imgs/home/testimonials-person3.png';
+
+type TestimonialsCustomerProps = {
+  img: string;
+  imgW: string;
+  imgH: string;
+  clr: string;
+  imgAlt: string;
+  fill: string;
+};
+
+const customersPics: TestimonialsCustomerProps[] = [
+  {
+    img: firstPerson,
+    imgW: '52',
+    imgH: '80',
+    clr: 'bg-clr-green',
+    imgAlt: 'A young man with glasses',
+    fill: 'fill-clr-green',
+  },
+  {
+    img: secondPerson,
+    imgW: '37',
+    imgH: '80',
+    clr: 'bg-clr-blue--light',
+    imgAlt: 'A young smiling woman with her arms crossed',
+    fill: 'fill-clr-blue--light',
+  },
+  {
+    img: thirdPerson,
+    imgW: '60',
+    imgH: '80',
+    clr: 'bg-clr-blue--dark',
+    imgAlt: 'A young smiling man with sunglasses',
+    fill: 'fill-clr-blue--dark',
+  },
+];
+---
+
+<Section
+  title="Testimonials"
+  titleId="testimonials-title"
+  titleDes="Customers speaks for us!"
+  isContainer={false}
+  dataAtt="testimonials"
+>
+  <div class="bg-testimonials bg-cover bg-center py-16 lg:pb-16 lg:pt-4">
+    <div class="my-container mx-auto flex flex-col items-center gap-9 lg:gap-0">
+      <img
+        src={testimonialsSmiles}
+        alt="Three emojis next to each other, one happy, one neutral, one sad"
+        class="max-h-20 motion-safe:scale-50 motion-safe:opacity-0 motion-safe:delay-500 motion-safe:duration-500 lg:z-10 lg:translate-y-1/2 lg:translate-x-3/4"
+        loading="lazy"
+        width="228"
+        height="80"
+        data-animation="scale opacity"
+      />
+      <div
+        class="group flex w-full flex-col items-center motion-safe:scale-50 motion-safe:opacity-0 motion-safe:duration-500 lg:flex-row lg:items-stretch"
+        data-animation="scale opacity"
+      >
+        <div
+          class="testimonial-clr relative relative z-10 mt-28 min-h-[12.5rem] w-full rounded-t-2xl bg-clr-green duration-700 lg:mt-0 lg:w-4/6 lg:max-w-sm lg:rounded-l-3xl lg:rounded-tr-none"
+        >
+          <img
+            src={firstPerson}
+            alt="A young man with glasses"
+            class="testimonial-customer-pic absolute bottom-0 left-1/2 h-[150%] -translate-x-1/2 duration-300 group-hover:h-[155%] lg:h-5/6 lg:group-hover:h-[90%]"
+            loading="lazy"
+          />
+          <svg
+            viewBox="0 0 256 256"
+            class="testimonial-clr absolute left-8 bottom-0 w-12 translate-y-2/3 rotate-180 fill-clr-green duration-700 lg:left-auto lg:bottom-1/2 lg:right-0 lg:translate-y-1/2 lg:translate-x-2/3 lg:rotate-90"
+            astro-icon="ph:triangle-fill"
+            ><path
+              d="M236.8 212a23.9 23.9 0 0 1-20.8 12H40a23.9 23.9 0 0 1-20.7-36l87.9-152a24 24 0 0 1 41.6 0l87.9 152a23.7 23.7 0 0 1 .1 24z"
+            ></path>
+          </svg>
+        </div>
+        <div
+          class="relative flex w-full flex-col gap-6 rounded-b-2xl border border-clr-italic bg-white px-6 pb-9 pt-20 shadow-card-shadow lg:rounded-r-3xl lg:rounded-bl-none lg:p-14"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="83.502"
+            height="71.722"
+            viewBox="0 0 83.502 71.722"
+            class="absolute right-6 top-8 opacity-10"
+          >
+            <g
+              id="Group_2918"
+              data-name="Group 2918"
+              transform="translate(-154.557 -140.317)"
+            >
+              <g
+                id="Group_2882"
+                data-name="Group 2882"
+                transform="translate(154.557 140.317)"
+              >
+                <path
+                  id="Path_3302"
+                  data-name="Path 3302"
+                  d="M238.059,140.317V182l-12.687,30.035H207.118L213.591,182h-12.04V140.317Zm-46.994,0V182l-12.687,30.035H160.253L166.6,182h-12.04V140.317Z"
+                  transform="translate(-154.557 -140.317)"
+                  class="testimonial-clr fill-clr-green"></path>
+              </g>
+            </g>
+          </svg>
+          <div class="flex flex-col gap-3">
+            <div class="flex gap-1">
+              {
+                Array(5)
+                  .fill('')
+                  .map((_) => (
+                    <Icon name="ic:baseline-star" class="w-8 text-[#FFC400]" />
+                  ))
+              }
+            </div>
+            <h2 class="testimonials-heading text-lg font-black">
+              More than happy with my move!
+            </h2>
+          </div>
+          <p class="testimonials-text">
+            David and Daniel were awesome, they wrapped everything so fast and
+            efficient with providing extra attention and care for my antique
+            wall clock. I won't forget Rachel !!! She was so easy to talk to,
+            her customer service skills are amazing! Those follow up calls
+            really helped us with being well prepared for our moving date If you
+            like it easy and stress free, full recommendation!
+          </p>
+          <div class="h-px w-full rounded-lg bg-clr-italic"></div>
+          <div class="relative ml-auto flex flex-col">
+            <div
+              class="testimonial-clr absolute h-full w-1 -translate-x-[300%] rounded-full bg-clr-green"
+            >
+            </div>
+            <h3 class="testimonials-name font-semibold">Jackson Stella</h3>
+            <p class="testimonials-profession text-sm opacity-70">
+              Software Developer
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex items-center gap-9 rounded-full bg-clr-green--light py-5 px-9 motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:duration-500 lg:mt-12 lg:bg-clr-green--light/70"
+        data-animation="translateX opacity"
+      >
+        {
+          customersPics.map((customer, i) => (
+            <div class="relative" data-testimonial={i}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="27.309"
+                height="30.971"
+                viewBox="0 0 27.309 30.971"
+                class={`absolute right-0 top-0 translate-x-full -translate-y-1/2 ${
+                  i !== 0 ? 'hidden' : ''
+                }`}
+              >
+                <g
+                  id="Group_2916"
+                  data-name="Group 2916"
+                  transform="translate(0 0.004)"
+                >
+                  <g id="Group_2912" data-name="Group 2912">
+                    <g id="Group_2911" data-name="Group 2911">
+                      <path
+                        id="Path_3321"
+                        data-name="Path 3321"
+                        d="M246.117,41.611a1.491,1.491,0,0,0,.246.03l.722.061a8.105,8.105,0,0,1,1.162.169c.227.049.478.07.734.149l.82.237a13.55,13.55,0,0,1,3.891,1.986,13.862,13.862,0,0,1,3.8,4.33,14.609,14.609,0,0,1,1.315,3.1,15.515,15.515,0,0,1,.49,5.527c-.021.326-.1.648-.14.975a6.9,6.9,0,0,1-.2.981,13.856,13.856,0,0,1-1.53,3.835,13.7,13.7,0,0,1-6.53,5.8,12.592,12.592,0,0,1-4.569.972,12.326,12.326,0,0,1-4.75-.739l-.465-.177-.061-.023-.056.027-6.731,3.322.2.172,2.145-6.408.027-.079-.058-.06a14.293,14.293,0,0,1-3.447-5.882,14.674,14.674,0,0,1-.439-6.225,14.314,14.314,0,0,1,4.882-8.917,14.7,14.7,0,0,1,3.311-2.055,14.4,14.4,0,0,1,2.787-.843l1.043-.165.769-.045.471-.031a.8.8,0,0,0,.16-.019.857.857,0,0,0-.16,0l-.472.008-.774.022-1.052.145a14.12,14.12,0,0,0-2.823.811,14.68,14.68,0,0,0-3.368,2.046,14.419,14.419,0,0,0-3.131,3.693,14.582,14.582,0,0,0-1.873,5.321,14.885,14.885,0,0,0,.424,6.331,14.527,14.527,0,0,0,3.5,6l-.032-.139-2.155,6.4-.109.323.306-.151L241.13,69.1h-.117l.475.181a12.592,12.592,0,0,0,4.856.754,12.859,12.859,0,0,0,4.669-1,13.946,13.946,0,0,0,6.651-5.927A14.091,14.091,0,0,0,259.21,59.2a7.168,7.168,0,0,0,.2-1c.045-.334.119-.661.139-.992a15.722,15.722,0,0,0-.522-5.613,14.751,14.751,0,0,0-1.351-3.136,13.95,13.95,0,0,0-3.883-4.358,13.462,13.462,0,0,0-3.953-1.963l-.83-.226a7.511,7.511,0,0,0-.742-.137,7.6,7.6,0,0,0-1.173-.142l-.726-.032a1.59,1.59,0,0,0-.252.006Z"
+                        transform="translate(-232.3 -41.606)"
+                        fill="#263238"
+                      />
+                    </g>
+                  </g>
+                  <g
+                    id="Group_2915"
+                    data-name="Group 2915"
+                    transform="translate(7.846 7.456)"
+                  >
+                    <g
+                      id="Group_2913"
+                      data-name="Group 2913"
+                      transform="translate(2.731)"
+                    >
+                      <path
+                        id="Path_3322"
+                        data-name="Path 3322"
+                        d="M256.2,67.557l.981.011,2.174-2.958.022-1.958s1.517-.076,1.309,2.485-.007,1.911-.007,1.911,3.218.049,3.483.332a33,33,0,0,1,.258,5.138,1.878,1.878,0,0,1-1.352,1.876,1.407,1.407,0,0,1-.347.043c-.8-.009-4.9-.708-4.9-.708l-1.694-.019Z"
+                        transform="translate(-256.14 -62.652)"
+                        class={customer.fill}
+                      />
+                    </g>
+                    <g
+                      id="Group_2914"
+                      data-name="Group 2914"
+                      transform="translate(0 4.336)"
+                    >
+                      <path
+                        id="Path_3323"
+                        data-name="Path 3323"
+                        d="M280.807,74.891l.527,6.714,1.679.019.075-6.572Z"
+                        transform="translate(-280.81 -74.891)"
+                        class={customer.fill}
+                      />
+                    </g>
+                  </g>
+                </g>
+              </svg>
+              <div
+                class={`hover:scale-110 ${customer.clr} testimonials-customers relative h-16 w-16 cursor-pointer overflow-hidden rounded-full sm:h-20 sm:w-20`}
+              >
+                <img
+                  src={customer.img}
+                  alt={customer.imgAlt}
+                  class="absolute bottom-0 left-1/2 h-full w-auto translate-y-2 -translate-x-1/2"
+                  loading="lazy"
+                  width={customer.imgW}
+                  height={customer.imgH}
+                />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Section>
+
+<script defer>
+  const customersTestemonials = [
+    {
+      heading: 'More than happy with my move!',
+      text: "David and Daniel were awesome, they wrapped everything so fast and efficient with providing extra attention and care for my antique wall clock. I won't forget Rachel!!! She was so easy to talk to, her customer service skills are amazing! Those follow up calls really helped us with being well prepared for our moving date If you like it easy and stress free, full recommendation!",
+      name: 'Jackson Stella',
+      profession: 'Software Developer',
+    },
+    {
+      heading: 'The best moving company!',
+      text: 'My husband and I decided to move into a smaller house. We hired No Worries Moving and it turned out to be the best decision, the company is very transparent and honest, we paid exactly what we were quoted. Moving crew was really experienced, they were very careful and protected all fragile items. Hopefully your business will grow, thank you No Worries Moving.',
+      name: 'Essie Richards',
+      profession: 'Social Workers',
+    },
+    {
+      heading: 'Had a really great experience with them.',
+      text: 'My move went smoothly and fast, crew was very efficient. Rachel also was awesome in organization of the move and helping us thru preparing period with great tips and advices. Thank you No Worries Moving for all your effort to make our move stress free!!! Best regards from me and my family, will definitely recommend you to everyone! Five STARS! ',
+      name: 'Evan Hanry',
+      profession: '	Mechanical Engineers',
+    },
+  ];
+
+  const testimonialHeading = document.querySelector('.testimonials-heading');
+  const testimonialText = document.querySelector('.testimonials-text');
+  const testimonialName = document.querySelector('.testimonials-name');
+  const testimonialProfession = document.querySelector(
+    '.testimonials-profession'
+  );
+
+  const testimonialsCustomers = Array.from(
+    document.querySelectorAll('.testimonials-customers')
+  );
+
+  const flexibleClrElms = Array.from(
+    document.querySelectorAll('.testimonial-clr')
+  );
+
+  const customerPic = document.querySelector('.testimonial-customer-pic');
+
+  const handleBgClassChange = (el, newBgCl) => {
+    const currentBgCl = Array.from(el.classList).find((cl) =>
+      cl.includes('-clr-')
+    );
+
+    const currentBgClSplit = currentBgCl.split('-');
+
+    const newBgClToAdd = `${currentBgClSplit[0]}-${currentBgClSplit[1]}-${newBgCl}`;
+
+    el.classList.remove(currentBgCl);
+
+    el.classList.add(newBgClToAdd);
+  };
+
+  const handleTestimonialChange = (e) => {
+    testimonialsCustomers.forEach((el) =>
+      el.parentElement.querySelector('svg').classList.add('hidden')
+    );
+
+    const divEl =
+      e.target.tagName === 'IMG' ? e.target.parentElement : e.target;
+
+    testimonialHeading.textContent =
+      customersTestemonials[divEl.parentElement.dataset.testimonial].heading;
+    testimonialText.textContent =
+      customersTestemonials[divEl.parentElement.dataset.testimonial].text;
+    testimonialName.textContent =
+      customersTestemonials[divEl.parentElement.dataset.testimonial].name;
+    testimonialProfession.textContent =
+      customersTestemonials[divEl.parentElement.dataset.testimonial].profession;
+
+    divEl.parentElement.querySelector('svg').classList.remove('hidden');
+
+    const testimonialBg = Array.from(divEl.classList).find((cl) =>
+      cl.startsWith('bg-')
+    );
+
+    const testimonialBgSplit = testimonialBg.split('-');
+
+    const testimonialBgClr = `${testimonialBgSplit[2]}${
+      testimonialBgSplit.length > 3 ? `--${testimonialBgSplit.at(-1)}` : ''
+    }`;
+
+    flexibleClrElms.forEach((el) => handleBgClassChange(el, testimonialBgClr));
+
+    const imgAddress = divEl.querySelector('img').src;
+
+    customerPic.src = imgAddress;
+  };
+
+  testimonialsCustomers.forEach((testimonial) =>
+    testimonial.addEventListener('click', handleTestimonialChange.bind(this))
+  );
+</script>

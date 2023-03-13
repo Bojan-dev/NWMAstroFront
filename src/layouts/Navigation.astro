@@ -1,0 +1,233 @@
+---
+import '../components/global/GlobalStyles.astro';
+import { Icon } from 'astro-icon';
+import logo from '../imgs/logostroke.svg';
+import Overlay from '../components/global/Overlay.astro';
+
+type PathProp = {
+  path: string;
+};
+
+const { path } = Astro.props as PathProp;
+
+const activeClasses =
+  'relative before:absolute before:h-1 before:w-full before:bg-clr-green before:bottom-0 before:left-0 before:rounded-xl xl:before:h-0.5 xl:before:w-1/2';
+const hoverClasses =
+  'relative before:absolute before:h-0.5 hover:before:w-1/2 hover:before:bg-clr-green hover:before:bottom-0 hover:before:left-0 hover:before:rounded-xl';
+
+const websitePages = [
+  'Home',
+  'Services',
+  'Pricing',
+  'Free Boxes',
+  'About Us',
+  'About You',
+  // 'Reviews',
+  'Contact',
+];
+---
+
+<style lang="css">
+  @keyframes shake-top {
+    0%,
+    100% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+      -webkit-transform-origin: 50% 0;
+      transform-origin: 50% 0;
+    }
+    2.5% {
+      -webkit-transform: rotate(2deg);
+      transform: rotate(2deg);
+    }
+    5%,
+    10%,
+    15% {
+      -webkit-transform: rotate(-4deg);
+      transform: rotate(-4deg);
+    }
+    7.5%,
+    12.5%,
+    17.5% {
+      -webkit-transform: rotate(4deg);
+      transform: rotate(4deg);
+    }
+    20% {
+      -webkit-transform: rotate(-2deg);
+      transform: rotate(-2deg);
+    }
+    22.5% {
+      -webkit-transform: rotate(2deg);
+      transform: rotate(2deg);
+    }
+  }
+  .shake-top {
+    -webkit-animation: shake-top 6.5s ease-in-out both infinite;
+    animation: shake-top 6.5s ease-in-out both infinite;
+  }
+  .navigation-w {
+    width: 100vw;
+  }
+  @media (min-width: 500px) {
+    .navigation-w {
+      width: 75vw;
+    }
+  }
+  @media (min-width: 768px) {
+    .navigation-w {
+      width: 50vw;
+    }
+  }
+  @media (prefers-reduced-motion) {
+    .shake-top {
+      animation: none;
+    }
+  }
+</style>
+
+<header
+  class="my-container absolute top-0 left-2/4 z-40 flex h-fit min-h-[125px] min-w-full -translate-x-1/2 items-center justify-between border-white text-white"
+>
+  <a href="/" class="z-20"
+    ><img
+      width="108"
+      height="67"
+      src={logo}
+      alt="No Worries Moving logo"
+      class="w-24 sm:w-[6.5rem]"
+      loading="lazy"
+    />
+  </a>
+  <nav
+    class="fixed right-0 top-0 h-screen min-h-fit w-10 min-w-fit overflow-auto bg-white/10 pt-32 pb-10 opacity-0 motion-safe:translate-x-full motion-safe:transition-all motion-safe:duration-500 motion-safe:ease-in xl:relative xl:block xl:h-fit xl:w-fit xl:translate-x-0 xl:bg-transparent xl:pt-0 xl:pb-0 xl:opacity-100"
+  >
+    <ul
+      class="flex flex-col items-center gap-10 text-base xl:flex-row xl:text-sm"
+    >
+      {
+        websitePages.map((page) => {
+          const pagePath =
+            page === 'Home'
+              ? '/'
+              : `/${page.toLocaleLowerCase().replace(' ', '-')}`;
+
+          return (
+            <li class=" flex w-full justify-center xl:w-fit">
+              <a
+                href={pagePath}
+                class={`${
+                  path === pagePath ? activeClasses : hoverClasses
+                } bg-clr-blue--dark block w-2/4 border p-4 text-center text-white xl:w-fit xl:border-none xl:bg-transparent xl:p-0 `}
+              >
+                {page}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
+  <div class="relative flex gap-4 sm:gap-7">
+    <a
+      href="tel:8449556683"
+      class="font-base phone group static bottom-0 right-0 flex translate-y-0 items-center gap-1 text-sm drop-shadow-phone-shadow sm:text-base sm:font-bold xl:absolute xl:flex xl:translate-y-150 2xl:static 2xl:translate-y-0"
+      ><Icon
+        name="ic:baseline-phone-iphone"
+        class="shake-top w-8 group-hover:text-clr-green"
+      />
+      (844) 955 6683</a
+    >
+    <a
+      href="/pricing"
+      class="hover:text-font-gray hidden border-2 border-clr-green px-12 py-3 hover:border-white hover:bg-white hover:text-clr-green xl:block"
+      >Get a Quote</a
+    >
+    <div
+      class="ham-menu relative flex h-8 w-12 cursor-pointer flex-col items-center justify-between xl:hidden"
+    >
+      <div class="top-1/2 h-1 w-full rounded bg-white duration-500"></div>
+      <div class="top-1/2 flex w-full justify-between">
+        <div class="h-1 w-5 rounded bg-white duration-500"></div>
+        <div class="h-1 w-5 rounded bg-white duration-500"></div>
+      </div>
+      <div class="top-1/2 h-1 w-full rounded bg-white duration-500"></div>
+    </div>
+  </div>
+</header>
+<Overlay isRes={true} extraClass={'nav-overlay'} />
+<div class="nav-observe 0 absolute top-0 h-screen"></div>
+
+<script defer>
+  const navClassList = ['absolute', '-translate-y-1/2'];
+  const toggleClass = (el, classId) => {
+    el.classList.toggle(classId);
+  };
+
+  const hamMenu = document.querySelector('.ham-menu');
+  const navigation = document.querySelector('nav');
+  const navOverlay = document.querySelector('.nav-overlay');
+  const hamChildren = Array.from(hamMenu.children);
+  const middleLines = Array.from(hamChildren[1].children);
+  const htmlDoc = document.querySelector('html');
+  const phone = document.querySelector('.phone');
+
+  const toggleNav = () => {
+    toggleClass(htmlDoc, 'overflow-y-hidden');
+    toggleClass(navigation, 'opacity-0');
+    toggleClass(navOverlay, 'hidden');
+    toggleClass(navigation, 'motion-safe:translate-x-full');
+    toggleClass(navigation, 'backdrop-blur');
+    toggleClass(navigation, 'navigation-w');
+    toggleClass(phone, 'hidden');
+  };
+
+  [hamMenu, navOverlay].forEach((el) => {
+    el.addEventListener('click', () => {
+      Array.from(hamChildren).forEach((el) => {
+        navClassList.forEach((classId) => toggleClass(el, classId));
+      });
+
+      middleLines.forEach((el) => toggleClass(el, 'opacity-0'));
+      toggleClass(middleLines[0], 'translate-x-negative-50vw');
+      toggleClass(middleLines[1], 'translate-x-64');
+      toggleClass(hamChildren[0], 'rotate-45');
+      toggleClass(hamChildren[2], '-rotate-45');
+      toggleNav();
+    });
+  });
+
+  const header = document.querySelector('header');
+  const navObserver = document.querySelector('.nav-observe');
+
+  const navigationObserveOptions = {
+    root: null,
+    threshold: 0.1,
+  };
+
+  const classesOnShow = [
+    'transition',
+    'fixed',
+    'bg-clr-blue',
+    'min-h-[85px]',
+    'shadow-card-shadow',
+  ];
+  const classesToggle = ['absolute', 'min-h-[125px]'];
+
+  const navigationObserveFun = (entries, _) => {
+    if (!entries[0].isIntersecting) {
+      classesOnShow.forEach((classId) => header.classList.add(classId));
+      classesToggle.forEach((classId) => header.classList.remove(classId));
+      return;
+    }
+
+    classesOnShow.forEach((classId) => header.classList.remove(classId));
+    classesToggle.forEach((classId) => header.classList.add(classId));
+  };
+
+  const observer = new IntersectionObserver(
+    navigationObserveFun,
+    navigationObserveOptions
+  );
+
+  observer.observe(navObserver);
+</script>

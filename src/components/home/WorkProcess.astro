@@ -1,0 +1,97 @@
+---
+import Section from '../global/Section.astro';
+import WorkProcessCard from './WorkProcessCard.astro';
+import processCall from '../../imgs/home/process-call.jpg';
+import processCallIll from '../../imgs/home/process-call-ill.svg';
+import processBoxes from '../../imgs/home/process-boxes.jpg';
+import processBoxesIll from '../../imgs/home/process-boxes-ill.svg';
+import processMove from '../../imgs/home/process-move.jpg';
+import processMoveIll from '../../imgs/home/process-move-ill.svg';
+import processMoney from '../../imgs/home/process-money.jpg';
+import processMoneyIll from '../../imgs/home/process-money-ill.svg';
+
+export type WorkProcessCardProps = {
+  img?: string;
+  imgAlt?: string;
+  smallH?: string;
+  heading?: string;
+  texts?: string[];
+  illustration?: string;
+  illustrationAlt?: string;
+};
+
+const workProcessCard: WorkProcessCardProps[] = [
+  {
+    img: processCall,
+    imgAlt: 'Man holding a cellphone',
+    smallH: 'First step',
+    heading: 'Quick call with moving expert',
+    texts: [
+      'Call now and speak with our moving experts who will advise you about the value and savings you will receive.',
+      'Ask about our DISCOUNTED PRICES on Boxes and Packing Materials.',
+    ],
+    illustration: processCallIll,
+    illustrationAlt: 'Three phones stacked from biggest to smallest',
+  },
+  {
+    img: processBoxes,
+    imgAlt: 'Kids running to their parents with boxes in their hands',
+    smallH: 'After that',
+    heading: 'Get boxes and supplies',
+    texts: [
+      'As our customer, we will get you all needed boxes and supplies for price that you cannot find on the market.',
+    ],
+    illustration: processBoxesIll,
+    illustrationAlt: 'Three boxes next to each other',
+  },
+  {
+    img: processMove,
+    imgAlt: 'A large pile of boxes, flowers, and other things ready for move',
+    smallH: 'Wohooo',
+    heading: 'Day of the move',
+    texts: [
+      'We love to feel your excitement when we bring your belongings to your new home.',
+      'Putting everything on the right spot, assembling your bed for your new beginning.',
+    ],
+    illustration: processMoveIll,
+    illustrationAlt: 'Three calendars next to each other',
+  },
+  {
+    img: processMoney,
+    imgAlt: 'A person giving money full of dollars to another person',
+    smallH: 'Last step',
+    heading: 'Get your money back',
+    texts: [
+      'After move is completed, we will take all packing materials that you bought from us and never used!',
+      "So you won't waste your money for boxes that you don't need!",
+    ],
+    illustration: processMoneyIll,
+    illustrationAlt: 'Three dollars bills positioned diagonally',
+  },
+];
+---
+
+<Section
+  title="Process of work"
+  titleId="work-process-title"
+  titleDes="You can expect satisfaction!"
+  dataAtt="process"
+>
+  <div class="mt-20">
+    {
+      workProcessCard.map((card, i) => (
+        <WorkProcessCard
+          img={card.img}
+          imgAlt={card.imgAlt}
+          smallH={card.smallH}
+          heading={card.heading}
+          texts={card.texts}
+          illustration={card.illustration}
+          illustrationAlt={card.illustrationAlt}
+          cardNum={i}
+          processCardsLength={workProcessCard.length}
+        />
+      ))
+    }
+  </div>
+</Section>

@@ -1,0 +1,18 @@
+---
+type BtnProp = {
+  classes?: string;
+  href: string;
+  target?: string;
+};
+
+const { classes = '', href, target } = Astro.props as BtnProp;
+
+const targetVal = target ? '_blank' : '';
+---
+
+<a
+  href={href}
+  target={targetVal}
+  class={`hover:bg-clr-green--dark text-white font-semibold text-lg bg-clr-green ${classes}`}
+  ><slot />
+</a>

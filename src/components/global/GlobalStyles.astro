@@ -1,0 +1,80 @@
+<style is:global>
+  html {
+    font-size: 14px;
+    color: #222222;
+  }
+
+  p,
+  a {
+    letter-spacing: 0.015em;
+  }
+
+  input,
+  textarea {
+    outline: none;
+  }
+
+  label {
+    cursor: pointer;
+  }
+
+  @keyframes process-ill {
+    0 {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.35;
+      transform: scale(0.75);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .process-anim {
+    animation: process-ill 10s infinite ease-in-out;
+  }
+
+  .my-container {
+    width: 100vw;
+    padding-left: 7.5vw;
+    padding-right: 7.5vw;
+    max-width: 120rem;
+  }
+
+  .work-process-perspective {
+    transform: rotateY(-45deg) rotateX(70deg);
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  @media (min-width: 1280px) {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  @media (prefers-reduced-motion) {
+    .work-process-perspective {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .my-container.my-container-res {
+      padding: 0;
+    }
+  }
+</style>

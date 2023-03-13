@@ -1,0 +1,14 @@
+---
+type BtnProp = {
+  classes: string;
+  href: string;
+};
+
+const { classes, href } = Astro.props as BtnProp;
+---
+
+<a
+  href={href}
+  class={`hover:bg-white hover:text-clr-green font-semibold text-lg bg-clr-green ${classes}`}
+  ><slot />
+</a>

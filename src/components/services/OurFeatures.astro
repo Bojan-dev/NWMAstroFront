@@ -1,0 +1,101 @@
+---
+import '../global/GlobalStyles.astro';
+import BtnOverall from '../UI/BtnOverall.astro';
+import featureFast from '../../../src/imgs/services/feature-fast.svg';
+import featureProfessional from '../../../src/imgs/services/feature-professional.svg';
+import featureFavorably from '../../../src/imgs/services/feature-favorably.svg';
+
+type FeatureType = {
+  heading: string;
+  text: string;
+  icon: string;
+  iconAlt: string;
+  iconW: string;
+  iconH: string;
+  btn: string;
+  btnHref: string;
+  tranDelay: string;
+}[];
+
+const features: FeatureType = [
+  {
+    heading: 'Fast',
+    text: "When we say 'Fast' we mean SPEEDY. Our team is trained to move quickly and carefully with precision.",
+    icon: featureFast,
+    iconAlt: '',
+    iconW: '36',
+    iconH: '36',
+    btn: 'Call Us',
+    btnHref: 'tel:8449556683',
+    tranDelay: 'delay-100',
+  },
+  {
+    heading: 'Professional',
+    text: 'We have proudly received thousands of compliments for our professionalism.',
+    icon: featureProfessional,
+    iconAlt: '',
+    iconW: '24',
+    iconH: '24',
+    btn: 'See Reviews',
+    btnHref: 'reviews',
+    tranDelay: 'delay-100 sm:delay-300',
+  },
+  {
+    heading: 'Transparent',
+    text: "Our transparent 'All-in-One' pricing system is a game changer in the moving industry. No extra fees, just one hourly rate.",
+    icon: featureFavorably,
+    iconAlt: '',
+    iconW: '24',
+    iconH: '24',
+    btn: 'Calculate',
+    btnHref: 'pricing',
+    tranDelay: 'delay-100 lg:delay-500',
+  },
+];
+---
+
+<div class="my-20 bg-clr-green--light">
+  <div
+    class="my-container mx-auto flex flex-col gap-12 py-12 sm:grid sm:grid-cols-4 lg:grid-cols-3 lg:gap-20"
+  >
+    {
+      features.map((feature, i) => (
+        <>
+          <div
+            class={`border-clr-italic  relative col-span-2 flex flex-col justify-between gap-6 overflow-hidden rounded-3xl bg-white py-9 px-7 motion-safe:-translate-x-1/2 motion-safe:opacity-0 motion-safe:duration-500 lg:col-auto lg:gap-4 ${
+              i + 1 === features.length ? 'col-start-2' : ''
+            }  ${feature.tranDelay}`}
+            data-animation="translateX opacity"
+          >
+            <div class="flex items-center justify-between">
+              <h2 class="text-lg font-semibold ">
+                {`0${i + 1}. ${feature.heading}`}
+              </h2>
+              <div class="bg-clr-green relative grid h-12 w-12 place-items-center rounded-2xl">
+                <img
+                  src={feature.icon}
+                  alt={feature.iconAlt}
+                  class={`absolute aspect-square ${
+                    i === 0 ? 'w-3/4' : 'w-1/2'
+                  }`}
+                  width={feature.iconW}
+                  height={feature.iconH}
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div class="bg-clr-italic h-px" />
+            <p>{feature.text}</p>
+
+            <BtnOverall
+              href={feature.btnHref}
+              classes={'w-fit px-8 py-2 rounded-2xl self-center sm:self-end '}
+            >
+              {feature.btn}
+            </BtnOverall>
+          </div>
+        </>
+      ))
+    }
+  </div>
+</div>

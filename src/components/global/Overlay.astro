@@ -1,0 +1,15 @@
+---
+type OverlayProps = {
+  isRes: boolean;
+  extraClass: string;
+};
+
+const { isRes = false, extraClass } = Astro.props as OverlayProps;
+---
+
+<div
+  class={`${extraClass} hidden fixed opacity-70 z-20 w-screen bg-black block h-screen ${
+    isRes ? 'xl:hidden' : ''
+  } `}
+>
+</div>
