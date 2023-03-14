@@ -13,7 +13,7 @@ const AutocompleteInput = ({
   register,
   errMessage,
 }) => {
-  const { ref: placesRef, autocompleteRef } = usePlacesWidget({
+  const { ref: placesRef } = usePlacesWidget({
     apiKey: 'AIzaSyBJY6Tbt9QquPzOWJ_I7vcc8E7bvHsf-rQ',
     onPlaceSelected: (place) => {
       handlePlaces(place);
