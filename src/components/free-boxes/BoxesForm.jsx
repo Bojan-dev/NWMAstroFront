@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { nameRegExp, phoneRegExp } from '../global/SchemaPatterns';
 import FormInput from '../global/FormInput';
+import AutocompleteInput from './AutocompleteInput';
 
 const boxesInputs = [
   [
@@ -132,7 +133,7 @@ const BoxesForm = () => {
     console.log(data);
   };
 
-  const handleSelectedPlace = () => (place) => {
+  const handleSelectedPlace = useCallback((place) => {
     const addressComponents = place.address_components;
 
     const streetNumber =
@@ -175,8 +176,6 @@ const BoxesForm = () => {
     );
     const zip = zipInfo?.long_name ?? '';
 
-    console.log(addressComponents);
-
     setValue('boxesAddress', street);
     addressRef.current.value = street;
     if (street) clearErrors('boxesAddress');
@@ -196,7 +195,7 @@ const BoxesForm = () => {
     setValue('boxesZip', zip);
     zipRef.current.value = zip;
     if (zip) clearErrors('boxesZip');
-  };
+  }, []);
 
   return (
     <form
@@ -218,18 +217,41 @@ const BoxesForm = () => {
             <div
               className={`flex ${`grid-cols-${inputsArr.length}`} flex-col gap-12 md:grid`}
             >
-              {inputsArr.map((input) => (
-                <FormInput
-                  key={input.inputId}
-                  labelTxt={input.labelTxt}
-                  inputId={input.inputId}
-                  inputPlaceholder={input.inputPlaceholder}
-                  inputType={input?.inputType}
-                  registerId={input.registerId}
-                  register={register}
-                  errMessage={errors[input.registerId]?.message}
-                />
-              ))}
+              {inputsArr.map((input) => {
+                const isInputAddress = input.isAddress;
+                const ref = isInputAddress
+                  ? addressRefsArr.current.find(
+                      (ref) => ref.id === input.inputId
+                    ).ref
+                  : null;
+
+                return !isInputAddress ? (
+                  <FormInput
+                    key={input.inputId}
+                    labelTxt={input.labelTxt}
+                    inputId={input.inputId}
+                    inputPlaceholder={input.inputPlaceholder}
+                    inputType={input?.inputType}
+                    registerId={input.registerId}
+                    register={register}
+                    errMessage={errors[input.registerId]?.message}
+                  />
+                ) : (
+                  <AutocompleteInput
+                    key={input.inputId}
+                    setValue={setValue}
+                    clearError={clearErrors}
+                    inputRef={ref}
+                    handlePlaces={handleSelectedPlace}
+                    labelTxt={input.labelTxt}
+                    inputId={input.inputId}
+                    inputPlaceholder={input.inputPlaceholder}
+                    registerId={input.registerId}
+                    register={register}
+                    errMessage={errors[input.registerId]?.message}
+                  />
+                );
+              })}
             </div>
           </React.Fragment>
         );
