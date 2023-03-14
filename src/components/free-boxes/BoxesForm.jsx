@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { nameRegExp, phoneRegExp } from '../global/SchemaPatterns';
 import FormInput from '../global/FormInput';
 import AutocompleteInput from './AutocompleteInput';
+import getAddressInputValue from './getAddressInputValue';
 
 const boxesInputs = [
   [
@@ -136,65 +137,15 @@ const BoxesForm = () => {
   const handleSelectedPlace = useCallback((place) => {
     const addressComponents = place.address_components;
 
-    const streetNumber =
-      addressComponents.find((component) =>
-        component.types.includes('street_number')
-      )?.long_name ?? '';
-    const streetName =
-      addressComponents.find((component) => component.types.includes('route'))
-        ?.long_name ?? '';
-    const street = `${streetNumber || ''} ${streetName || ''}`;
-
-    const aptInfo =
-      addressComponents.find(
-        (component) =>
-          component.types.includes('subpremise') ||
-          component.types.includes('premise')
-      )?.long_name ?? '';
-    const apt = aptInfo?.long_name ?? '';
-
-    const cityInfo = addressComponents.find(
-      (component) =>
-        component.types.includes('locality') ||
-        component.types.includes('postal_town') ||
-        component.types.includes('administrative_area_level_2') ||
-        component.types.includes('administrative_area_level_3')
+    addressRefsArr.current.forEach((refInfo) =>
+      getAddressInputValue(
+        refInfo.id,
+        refInfo.ref,
+        addressComponents,
+        clearErrors,
+        setValue
+      )
     );
-    const city = cityInfo?.long_name ?? '';
-
-    const stateInfo = addressComponents.find(
-      (component) =>
-        component.types.includes('administrative_area_level_1') ||
-        component.types.includes('administrative_area_level_2')
-    );
-    const state = stateInfo?.long_name ?? '';
-
-    const zipInfo = addressComponents.find(
-      (component) =>
-        component.types.includes('postal_code') ||
-        component.types.includes('postal_code_suffix')
-    );
-    const zip = zipInfo?.long_name ?? '';
-
-    setValue('boxesAddress', street);
-    addressRef.current.value = street;
-    if (street) clearErrors('boxesAddress');
-
-    setValue('boxesApartment', apt);
-    aptRef.current.value = apt;
-    if (apt) clearErrors('boxesApartment');
-
-    setValue('boxesState', state);
-    stateRef.current.value = state;
-    if (state) clearErrors('boxesState');
-
-    setValue('boxesCity', city);
-    cityRef.current.value = city;
-    if (city) clearErrors('boxesCity');
-
-    setValue('boxesZip', zip);
-    zipRef.current.value = zip;
-    if (zip) clearErrors('boxesZip');
   }, []);
 
   return (
