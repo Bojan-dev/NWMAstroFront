@@ -7,7 +7,7 @@ const useAsyncPost = (setFormErrors = false) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (error) {
+    if (error && typeof error === 'object') {
       error.forEach((errObj) => {
         setFormErrors(errObj.key, {
           type: '400',
@@ -28,7 +28,6 @@ const useAsyncPost = (setFormErrors = false) => {
       setResMessage(data.message);
     } catch (err) {
       const errors = err.response.data.errors || err.response.data.error;
-      console.log(errors);
       setError(errors);
     }
 
