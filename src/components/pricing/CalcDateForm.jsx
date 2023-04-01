@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import CalcBtn from './CalcBtn';
 import '../../styles/flatpickr.min.css';
 import Flatpickr from 'react-flatpickr';
+import { useSetFormsData } from './CalcFormsCtx';
 
 const oneYearInFront = new Date().setFullYear(new Date().getFullYear() + 1);
 const tomorrow = new Date().setDate(new Date().getDate() + 1);
@@ -30,6 +31,7 @@ const CalcDateForm = ({
   setFormHeight,
   isCurrentForm,
 }) => {
+  const handleCalcFormsData = useSetFormsData();
   const { formRef } = useFormHeight(setFormHeight, isCurrentForm);
 
   const {
@@ -39,6 +41,7 @@ const CalcDateForm = ({
   } = useForm({ resolver: yupResolver(dateSchema) });
 
   const onDateSubmit = (data) => {
+    handleCalcFormsData('date', data);
     handleNextForm();
   };
 

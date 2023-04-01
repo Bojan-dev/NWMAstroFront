@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import CalcBtn from './CalcBtn';
 import calcHouse from '../../imgs/pricing/calc-house.png';
 import calcApartment from '../../imgs/pricing/calc-apartment.png';
+import { useSetFormsData } from './CalcFormsCtx';
 
 const homeTypeBtns = [
   {
@@ -57,6 +58,7 @@ const CalcHomeTypeForm = ({
   setFormHeight,
   isCurrentForm,
 }) => {
+  const handleCalcFormsData = useSetFormsData();
   const [homeTypeState, dispatch] = useReducer(reducerFun, initialState);
   const { formRef } = useFormHeight(
     setFormHeight,
@@ -73,6 +75,7 @@ const CalcHomeTypeForm = ({
   });
 
   const onHomeTypeSubmit = (data) => {
+    handleCalcFormsData('homeType', data);
     handleNextForm();
   };
 

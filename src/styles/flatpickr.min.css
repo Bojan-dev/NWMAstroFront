@@ -302,19 +302,14 @@
 }
 .flatpickr-current-month {
   font-size: 135%;
-  line-height: inherit;
   font-weight: 300;
   color: inherit;
   position: absolute;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   line-height: 1;
-  height: 34px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  height: 34px;
 }
 .flatpickr-current-month span.cur-month {
   font-family: inherit;
@@ -328,9 +323,7 @@
   background: rgba(0, 0, 0, 0.05);
 }
 .flatpickr-current-month .numInputWrapper {
-  width: 6ch;
-  width: 7ch\0;
-  display: inline-block;
+  display: none;
 }
 .flatpickr-current-month .numInputWrapper span.arrowUp:after {
   border-bottom-color: rgba(0, 0, 0, 0.9);

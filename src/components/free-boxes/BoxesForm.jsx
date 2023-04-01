@@ -1,11 +1,14 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { nameRegExp, phoneRegExp } from '../global/SchemaPatterns';
+import { nameRegExp, emailRegExp, phoneRegExp } from '../global/SchemaPatterns';
 import FormInput from '../global/FormInput';
 import AutocompleteInput from './AutocompleteInput';
 import getAddressInputValue from './getAddressInputValue';
+import useAsyncPost from '../global/useAsyncPost';
+import Loading from '../global/Loading';
+import OverlayMessage from '../global/OverlayMessage';
 
 const boxesInputs = [
   [
@@ -89,7 +92,7 @@ const freeBoxesSchema = yup.object().shape({
     .required('Your last name is required.')
     .matches(nameRegExp, 'Please use the right format.'),
   boxesAddress: yup.string().required('Shipping address is required.'),
-  boxesApartment: yup.string().required('Apartment number is required.'),
+  boxesApartment: yup.string(),
   boxesCity: yup.string().required('City is required.'),
   boxesState: yup.string().required('State is required.'),
   boxesZip: yup
@@ -100,7 +103,8 @@ const freeBoxesSchema = yup.object().shape({
   boxesEmail: yup
     .string()
     .email('Email is not valid.')
-    .required('Your email is required.'),
+    .required('Your email is required.')
+    .matches(emailRegExp, 'Email is not valid.'),
   boxesPhone: yup
     .string()
     .required('Your phone number is required.')
@@ -128,10 +132,13 @@ const BoxesForm = () => {
     formState: { errors },
     setValue,
     clearErrors,
+    setError,
   } = useForm({ resolver: yupResolver(freeBoxesSchema) });
 
+  const { isLoading, handleAsync, resMessage } = useAsyncPost(setError);
+
   const onBoxesSubmit = (data) => {
-    console.log(data);
+    handleAsync('free-boxes', data);
   };
 
   const handleSelectedPlace = useCallback((place) => {
@@ -149,68 +156,74 @@ const BoxesForm = () => {
   }, []);
 
   return (
-    <form
-      onSubmit={handleSubmit(onBoxesSubmit)}
-      className="flex flex-col gap-10 border-t pt-10"
-    >
-      <h2 className="relative font-semibold before:absolute before:bottom-0 before:h-0.5 before:w-12 before:rounded-xl before:bg-clr-green">
-        SHIPPING INFORMATION:
-      </h2>
-      {boxesInputs.map((inputsArr, i) => {
-        const isLastArr = inputsArr === boxesInputs.at(-1);
-        return (
-          <React.Fragment key={i}>
-            {isLastArr && (
-              <h2 className="relative mt-4 font-semibold before:absolute before:bottom-0 before:h-0.5 before:w-12 before:rounded-xl before:bg-clr-green">
-                CONTACT INFORMATION:
-              </h2>
-            )}
-            <div
-              className={`flex ${`grid-cols-${inputsArr.length}`} flex-col gap-12 md:grid`}
-            >
-              {inputsArr.map((input) => {
-                const isInputAddress = input.isAddress;
-                const ref = isInputAddress
-                  ? addressRefsArr.current.find(
-                      (ref) => ref.id === input.inputId
-                    ).ref
-                  : null;
+    <>
+      {isLoading && <Loading isLoading={isLoading} />}
+      {resMessage && (
+        <OverlayMessage heading="Expect Our Call!" message={resMessage} />
+      )}
+      <form
+        onSubmit={handleSubmit(onBoxesSubmit)}
+        className="flex flex-col gap-10 border-t pt-10"
+      >
+        <h2 className="relative font-semibold before:absolute before:bottom-0 before:h-0.5 before:w-12 before:rounded-xl before:bg-clr-green">
+          SHIPPING INFORMATION:
+        </h2>
+        {boxesInputs.map((inputsArr, i) => {
+          const isLastArr = inputsArr === boxesInputs.at(-1);
+          return (
+            <React.Fragment key={i}>
+              {isLastArr && (
+                <h2 className="relative mt-4 font-semibold before:absolute before:bottom-0 before:h-0.5 before:w-12 before:rounded-xl before:bg-clr-green">
+                  CONTACT INFORMATION:
+                </h2>
+              )}
+              <div
+                className={`flex ${`grid-cols-${inputsArr.length}`} flex-col gap-12 md:grid`}
+              >
+                {inputsArr.map((input) => {
+                  const isInputAddress = input.isAddress;
+                  const ref = isInputAddress
+                    ? addressRefsArr.current.find(
+                        (ref) => ref.id === input.inputId
+                      ).ref
+                    : null;
 
-                return !isInputAddress ? (
-                  <FormInput
-                    key={input.inputId}
-                    labelTxt={input.labelTxt}
-                    inputId={input.inputId}
-                    inputPlaceholder={input.inputPlaceholder}
-                    inputType={input?.inputType}
-                    registerId={input.registerId}
-                    register={register}
-                    errMessage={errors[input.registerId]?.message}
-                  />
-                ) : (
-                  <AutocompleteInput
-                    key={input.inputId}
-                    setValue={setValue}
-                    clearError={clearErrors}
-                    inputRef={ref}
-                    handlePlaces={handleSelectedPlace}
-                    labelTxt={input.labelTxt}
-                    inputId={input.inputId}
-                    inputPlaceholder={input.inputPlaceholder}
-                    registerId={input.registerId}
-                    register={register}
-                    errMessage={errors[input.registerId]?.message}
-                  />
-                );
-              })}
-            </div>
-          </React.Fragment>
-        );
-      })}
-      <button className="mx-auto mt-6 w-full rounded-xl bg-clr-green py-6 font-semibold text-white sm:w-auto sm:px-20">
-        PROCESS REQUEST
-      </button>
-    </form>
+                  return !isInputAddress ? (
+                    <FormInput
+                      key={input.inputId}
+                      labelTxt={input.labelTxt}
+                      inputId={input.inputId}
+                      inputPlaceholder={input.inputPlaceholder}
+                      inputType={input?.inputType}
+                      registerId={input.registerId}
+                      register={register}
+                      errMessage={errors[input.registerId]?.message}
+                    />
+                  ) : (
+                    <AutocompleteInput
+                      key={input.inputId}
+                      setValue={setValue}
+                      clearError={clearErrors}
+                      inputRef={ref}
+                      handlePlaces={handleSelectedPlace}
+                      labelTxt={input.labelTxt}
+                      inputId={input.inputId}
+                      inputPlaceholder={input.inputPlaceholder}
+                      registerId={input.registerId}
+                      register={register}
+                      errMessage={errors[input.registerId]?.message}
+                    />
+                  );
+                })}
+              </div>
+            </React.Fragment>
+          );
+        })}
+        <button className="mx-auto mt-6 w-full rounded-xl bg-clr-green py-6 font-semibold text-white sm:w-auto sm:px-20">
+          PROCESS REQUEST
+        </button>
+      </form>
+    </>
   );
 };
 

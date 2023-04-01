@@ -16,6 +16,7 @@ import {
   faCity,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import CalcFormsProvider from './CalcFormsCtx';
 
 const FormElFun =
   (FormEl) =>
@@ -136,21 +137,23 @@ const Calculator = () => {
         </p>
       </div>
       <div className="w-full overflow-hidden duration-500">
-        {calcSteps.map((calc, i) => {
-          const visibilityCl = i === currentForm ? '' : 'hidden';
-          const FormComponent = calc.form;
-          const isCurrentForm = i === currentForm;
+        <CalcFormsProvider>
+          {calcSteps.map((calc, i) => {
+            const visibilityCl = i === currentForm ? '' : 'hidden';
+            const FormComponent = calc.form;
+            const isCurrentForm = i === currentForm;
 
-          return (
-            <FormComponent
-              handleNextForm={handleNextForm}
-              visibilityCl={visibilityCl}
-              setFormHeight={setCurFormHeight}
-              isCurrentForm={isCurrentForm}
-              key={i}
-            />
-          );
-        })}
+            return (
+              <FormComponent
+                handleNextForm={handleNextForm}
+                visibilityCl={visibilityCl}
+                setFormHeight={setCurFormHeight}
+                isCurrentForm={isCurrentForm}
+                key={i}
+              />
+            );
+          })}
+        </CalcFormsProvider>
       </div>
       <div className="hidden h-px w-12 bg-clr-green"></div>
       <ul className="flex hidden flex-col items-center gap-6">

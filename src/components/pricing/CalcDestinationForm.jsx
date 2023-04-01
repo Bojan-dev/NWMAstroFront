@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import CalcBtn from './CalcBtn';
+import { useSetFormsData } from './CalcFormsCtx';
 
 const destinationBtns = [
   { context: <>&#60;50 Miles</>, value: '<50', id: 'calc-destination-50' },
@@ -28,6 +29,7 @@ const CalcDestinationForm = ({
   setFormHeight,
   isCurrentForm,
 }) => {
+  const handleCalcFormsData = useSetFormsData();
   const { formRef } = useFormHeight(setFormHeight, isCurrentForm);
   const [selectedDropDestination, setSelectedDropDestination] = useState('');
   const [zipValue, setZipValue] = useState('');
@@ -38,6 +40,7 @@ const CalcDestinationForm = ({
   } = useForm({ resolver: yupResolver(destinationSchema) });
 
   const onDestinationSubmit = (data) => {
+    handleCalcFormsData('destination', data);
     handleNextForm();
   };
 
