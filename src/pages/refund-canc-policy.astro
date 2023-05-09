@@ -1,0 +1,27 @@
+---
+import '../components/global/GlobalStyles.astro';
+import Layout from '../layouts/Layout.astro';
+import PolicyPage from '../components/policy/PolicyPage.astro';
+
+const refundCancPolicy = [
+  {
+    heading: 'Payment methods',
+    text: "With a small, yet dedicated team, we strive to offer a personalized touch to every move we perform. We're focused to provide excellent service while also ensuring that our customers feel comfortable and stress-free throughout the moving process",
+  },
+  {
+    heading: 'Packing materials',
+    text: "With a small, yet dedicated team, we strive to offer a personalized touch to every move we perform. We're focused to provide excellent service while also ensuring that our customers feel comfortable and stress-free throughout the moving process",
+  },
+];
+---
+
+<Layout
+  title="- Refund/Cancellation Policy"
+  description="Refund/Cancellation Policy"
+  path="/refund-canc-policy"
+>
+  <PolicyPage
+    heading="Refund/Cancellation Policy"
+    policies={refundCancPolicy}
+  />
+</Layout>

@@ -1,11 +1,11 @@
 ---
 import '../global/GlobalStyles.astro';
-import NewsletterForm from './NewsletterForm.jsx'
+import NewsletterForm from './NewsletterForm.jsx';
 ---
 
 <section
   aria-labelledby="newsletter-title"
-  class="my-container flex flex-col items-center gap-9 mx-auto text-center bg-clr-green--light py-12 motion-safe:opacity-0 motion-safe:translate-y-1/2 motion-safe:duration-500"
+  class="my-container flex flex-col items-center gap-9 mx-auto text-center bg-clr-green--light py-12 motion-safe:opacity-0 motion-safe:translate-y-1/2 motion-safe:duration-500 mb-20"
   data-animation="translateY opacity"
 >
   <h2 id="newsletter-title" class="text-h2_md md:text-xxl font-black">
@@ -16,6 +16,5 @@ import NewsletterForm from './NewsletterForm.jsx'
       class="text-clr-green">Newsletter</span
     > to receive our offers and discounts:
   </h3>
-  <NewsletterForm client:visible/>
+  <NewsletterForm client:visible />
 </section>
-

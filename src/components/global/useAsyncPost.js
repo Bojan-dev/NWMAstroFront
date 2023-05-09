@@ -28,6 +28,7 @@ const useAsyncPost = (setFormErrors = false) => {
       setResMessage(data.message);
     } catch (err) {
       const errors = err.response.data.errors || err.response.data.error;
+
       setError(errors);
     }
 

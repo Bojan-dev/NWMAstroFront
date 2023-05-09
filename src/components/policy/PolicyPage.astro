@@ -1,0 +1,65 @@
+---
+interface PolicyProps {
+  heading: string;
+  policies: [
+    {
+      heading: string;
+      text: string;
+    }
+  ];
+}
+
+const { heading, policies } = Astro.props as PolicyProps;
+---
+
+<div class="absolute top-0 left-0 min-h-125 w-full bg-clr-blue"></div>
+<div class="my-container mx-auto">
+  <main
+    class="relative mx-auto mt-52 mb-20 shadow-card-shadow w-full bg-white rounded-3xl p-12"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="54.002"
+      height="55.997"
+      viewBox="0 0 54.002 55.997"
+      class="absolute right-0 top-0 translate-x-1/2 -translate-y-1/2 z-negative scale-75 xl:scale-100"
+    >
+      <path
+        id="Subtraction_17"
+        data-name="Subtraction 17"
+        d="M22615.992,2908h-54v-56a53.737,53.737,0,0,1,21.047,4.533,54.438,54.438,0,0,1,17.162,11.891,55.491,55.491,0,0,1,15.793,38.891c0,.227,0,.455-.006.681Z"
+        transform="translate(-22561.996 -2852.001)"
+        fill="#41ba03"></path>
+    </svg>
+    <h1 class="text-h3_md font-black tracking-wide md:text-xl_height">
+      {heading}
+    </h1>
+    <div class="w-12 h-1 bg-clr-green mt-4"></div>
+    <div class="mt-10 flex flex-col gap-8">
+      {
+        policies.map((policy) => (
+          <div class="flex flex-col gap-4">
+            <h2 class="font-semibold text-lg">
+              <span class="text-clr-green">&#x2022;</span> {policy.heading}:
+            </h2>
+            <p>{policy.text}</p>
+          </div>
+        ))
+      }
+    </div>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="54.002"
+      height="55.997"
+      viewBox="0 0 54.002 55.997"
+      class="absolute left-0 bottom-0 -translate-x-1/2 translate-y-1/2 z-negative scale-75 xl:scale-100"
+    >
+      <path
+        id="Subtraction_18"
+        data-name="Subtraction 18"
+        d="M54,56H0V0A53.737,53.737,0,0,1,21.047,4.533,54.438,54.438,0,0,1,38.209,16.424,55.141,55.141,0,0,1,49.766,33.931,55.516,55.516,0,0,1,54,55.314c0,.227,0,.455-.006.681Z"
+        transform="translate(54.002 55.997) rotate(180)"
+        fill="#41ba03"></path>
+    </svg>
+  </main>
+</div>

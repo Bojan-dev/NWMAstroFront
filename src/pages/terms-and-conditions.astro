@@ -1,0 +1,24 @@
+---
+import '../components/global/GlobalStyles.astro';
+import Layout from '../layouts/Layout.astro';
+import PolicyPage from '../components/policy/PolicyPage.astro';
+
+const termsPolicies = [
+  {
+    heading: 'Payment methods',
+    text: "With a small, yet dedicated team, we strive to offer a personalized touch to every move we perform. We're focused to provide excellent service while also ensuring that our customers feel comfortable and stress-free throughout the moving process",
+  },
+  {
+    heading: 'Packing materials',
+    text: "With a small, yet dedicated team, we strive to offer a personalized touch to every move we perform. We're focused to provide excellent service while also ensuring that our customers feel comfortable and stress-free throughout the moving process",
+  },
+];
+---
+
+<Layout
+  title="- Terms and Conditions"
+  description="Services Page"
+  path="/terms-and-conditions"
+>
+  <PolicyPage heading="Terms and Conditions" policies={termsPolicies} />
+</Layout>

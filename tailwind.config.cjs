@@ -55,6 +55,9 @@ module.exports = {
         125: '125%',
         150: '150%',
       },
+      padding: {
+        125: '125px',
+      },
       maxWidth: {
         'rem-100': '100rem',
         'rem-27': '27.5rem',
@@ -64,6 +67,10 @@ module.exports = {
       },
       minHeight: {
         'rem-55': '55rem',
+        125: '125px',
+      },
+      zIndex: {
+        negative: '-1',
       },
     },
   },
