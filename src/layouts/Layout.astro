@@ -9,67 +9,78 @@ interface HeadProps {
   title: string;
   description: string;
   path: string;
-  is404?: boolean;
+  removeFooter?: boolean;
 }
 
-const { title, description, path, is404 = false } = Astro.props as HeadProps;
+const {
+  title,
+  description,
+  path,
+  removeFooter = false,
+} = Astro.props as HeadProps;
 ---
 
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="en">
-  <script id='pixel-script-poptin' src='https://cdn.popt.in/pixel.js?id=64842c862929d' async='true'></script>
-  <head>
-    <GoogleAnalytics />
-    <div id="referrizer-popup-widget" data-aid="d85d525a39405ff3e4769ed7c9289932"></div><script src="https://widget.referrizer.com/offer/popup-voucher.js"></script>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale = 1.0, 
-      maximum-scale=5.0"
-    />
-    <meta name="description" content={description} />
-    <meta
-      property="og:title"
-      content="Best Moving company in Illinois - No Worries Moving"
-    />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:description"
-      content="No Worries Moving is a moving company with 15 years of experience in the moving industry and over 5 thousand happy clients."
-    />
-    <meta
-      property="og:image"
-      content="https://scontent.fbeg11-1.fna.fbcdn.net/v/t39.30808-6/304963803_407364264844014_1833805682296115789_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_ohc=KbA6uLgNQlEAX94u0-c&_nc_ht=scontent.fbeg11-1.fna&oh=00_AfBaArG0ieF5fPkvsWcgoFB7pK71y4GrVm6XqaI-iN7u2w&oe=63935897"
-    />
-    <meta property="og:url" content="https://noworriesmoving.com/" />
-    <meta property="og:site_name" content="No Worries Moving" />
-    <meta name="twitter:image:alt" content="NWM company trucks" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      property="og:title"
-      content="Best Moving company in Illinois - No Worries Moving"
-    />
-    <meta name="theme-color" content="#41ba03" />
-    <meta
-      name="google-site-verification"
-      content="_97MvHbwuJTBgjiwXpXIP0dTSzEnusZW4luU5M5Ung8"
-    />
-    <GoogleFontsOptimizer
-      url="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;900&family=Poppins:wght@400;500;900&display=swap"
-    />
+  <script
+    id="pixel-script-poptin"
+    src="https://cdn.popt.in/pixel.js?id=64842c862929d"
+    async="true"
+  ></script>
 
-    <title>No Worries Moving {title}</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  </head>
+  <GoogleAnalytics />
+  <div id="referrizer-popup-widget" data-aid="d85d525a39405ff3e4769ed7c9289932">
+  </div><script src="https://widget.referrizer.com/offer/popup-voucher.js"
+  ></script>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale = 1.0, 
+      maximum-scale=5.0"
+  />
+  <meta name="description" content={description} />
+  <meta
+    property="og:title"
+    content="Best Moving company in Illinois - No Worries Moving"
+  />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:description"
+    content="No Worries Moving is a moving company with 15 years of experience in the moving industry and over 5 thousand happy clients."
+  />
+  <meta
+    property="og:image"
+    content="https://scontent.fbeg11-1.fna.fbcdn.net/v/t39.30808-6/304963803_407364264844014_1833805682296115789_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_ohc=KbA6uLgNQlEAX94u0-c&_nc_ht=scontent.fbeg11-1.fna&oh=00_AfBaArG0ieF5fPkvsWcgoFB7pK71y4GrVm6XqaI-iN7u2w&oe=63935897"
+  />
+  <meta property="og:url" content="https://noworriesmoving.com/" />
+  <meta property="og:site_name" content="No Worries Moving" />
+  <meta name="twitter:image:alt" content="NWM company trucks" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta
+    name="twitter:title"
+    property="og:title"
+    content="Best Moving company in Illinois - No Worries Moving"
+  />
+  <meta name="theme-color" content="#41ba03" />
+  <meta
+    name="google-site-verification"
+    content="_97MvHbwuJTBgjiwXpXIP0dTSzEnusZW4luU5M5Ung8"
+  />
+  <GoogleFontsOptimizer
+    url="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;900&family=Poppins:wght@400;500;900&display=swap"
+  />
+
+  <title>No Worries Moving {title}</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
   <body>
     <div class="relative overflow-x-hidden text-base">
       <Navigation path={path} />
       <slot />
       {
-        is404 ? <></> :  (
+        !removeFooter && (
           <>
             <PartnerCompanies />
             <Footer />
@@ -78,43 +89,46 @@ const { title, description, path, is404 = false } = Astro.props as HeadProps;
       }
     </div>
   </body>
+  <script defer>
+    const homeAnimationParts = document.querySelectorAll('[data-animation]');
+
+    const scrollAnimClsToRemove = {
+      opacity: 'motion-safe:opacity-0',
+      translateX: 'motion-safe:-translate-x-1/2',
+      translateXNeg: 'motion-safe:translate-x-1/2',
+      translateY: 'motion-safe:translate-y-1/2',
+      process: 'work-process-perspective',
+      scale: 'motion-safe:scale-50',
+    };
+
+    const handleScrollAnimObserver = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const isParentAnim = entry.target.dataset.animation === 'child';
+          const animEl = isParentAnim
+            ? entry.target.parentElement
+            : entry.target;
+          const animData = isParentAnim
+            ? animEl.dataset.animationp
+            : animEl.dataset.animation;
+          animData
+            .split(' ')
+            .forEach((anim) =>
+              animEl.classList.remove(scrollAnimClsToRemove[anim])
+            );
+        }
+      });
+    };
+
+    const elAnimObserverOptions = {
+      threshold: 0.35,
+    };
+
+    const elScrollAnimObserver = new IntersectionObserver(
+      handleScrollAnimObserver,
+      elAnimObserverOptions
+    );
+
+    [...homeAnimationParts].forEach((el) => elScrollAnimObserver.observe(el));
+  </script>
 </html>
-
-<script defer>
-  const homeAnimationParts = document.querySelectorAll('[data-animation]');
-
-  const scrollAnimClsToRemove = {
-  opacity: 'motion-safe:opacity-0',
-  translateX: 'motion-safe:-translate-x-1/2',
-  translateXNeg:'motion-safe:translate-x-1/2',
-  translateY: 'motion-safe:translate-y-1/2',
-  process: 'work-process-perspective',
-  scale: 'motion-safe:scale-50',
-};
-
-const handleScrollAnimObserver = (entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      const isParentAnim = entry.target.dataset.animation === 'child';
-      const animEl = isParentAnim ? entry.target.parentElement : entry.target;
-      const animData = isParentAnim ? animEl.dataset.animationp : animEl.dataset.animation;
-      animData.split(' ')
-        .forEach((anim) =>
-        animEl.classList.remove(scrollAnimClsToRemove[anim])
-        );
-    }
-  });
-};
-
-const elAnimObserverOptions = {
-  threshold: 0.35,
-};
-
-const elScrollAnimObserver = new IntersectionObserver(
-  handleScrollAnimObserver,
-  elAnimObserverOptions
-);
-
-  [...homeAnimationParts].forEach((el) => elScrollAnimObserver.observe(el));
-
-</script>
