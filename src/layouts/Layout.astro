@@ -10,6 +10,7 @@ interface HeadProps {
   description: string;
   path: string;
   removeFooter?: boolean;
+  removeHeader?: boolean;
 }
 
 const {
@@ -17,6 +18,7 @@ const {
   description,
   path,
   removeFooter = false,
+  removeHeader = false,
 } = Astro.props as HeadProps;
 ---
 
@@ -77,7 +79,7 @@ const {
 
   <body>
     <div class="relative overflow-x-hidden text-base">
-      <Navigation path={path} />
+      {!removeHeader && <Navigation path={path} />}
       <slot />
       {
         !removeFooter && (
