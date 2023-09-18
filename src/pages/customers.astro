@@ -1,0 +1,141 @@
+---
+import '../components/global/GlobalStyles.astro';
+import Layout from '../layouts/Layout.astro';
+import logo from '../imgs/quote/logo.png';
+import google from '../imgs/quote/google.png';
+import emily from '../imgs/quote/emily.png';
+import curoselFirst from '../imgs/quote/carousel/1.jpg';
+import curoselSecond from '../imgs/quote/carousel/2.jpg';
+import curoselThird from '../imgs/quote/carousel/3.jpg';
+import phoneWhiteIcon from '../imgs/quote/icons/phonewhite.png';
+import CustomerInfo from '../components/customers/CustomerInfo';
+---
+
+<Layout
+  title="- Quote"
+  description="You can find the customer information on the page."
+  removeFooter={true}
+  removeHeader={true}
+>
+  <div class="max-w-screen-md mx-auto bg-white">
+    <header class="bg-white p-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <img src={logo} alt="Logo" class="h-[100px] w-auto" />
+      </div>
+
+      <div class="flex items-center">
+        <div class="flex flex-col items-center">
+          <img src={google} alt="Profile Picture" class="h-[80px] w-auto m-0" />
+        </div>
+      </div>
+    </header>
+
+    <div class="bg-[#EAFFDB] text-black text-light p-8 text-justify">
+      <p>
+        At <strong>No Worries Moving</strong>, we take pride in being a <strong>
+          family-owned
+        </strong> local moving company.Unlike larger moving corporations, we have
+        no overhead expenses like franchise fees or costly billboard and TV advertisements.
+        This allows us to focus on what truly matters: your satisfaction. We treat
+        your belongings with care and respect, ensuring a <strong>
+          smooth
+        </strong> and <strong>stress-free</strong> moving experience for you and
+        your family.
+      </p>
+    </div>
+
+    <CustomerInfo client:only="react" />
+
+    <section class="bg-white py-8">
+      <div class="text-center">
+        <p class="text-lg font-bold">
+          Need to update any of details, want to place deposit? Call me at <a
+            href="tel:+12176505984"
+            class="underline text-[#42BA03]">(217) 650-5984</a
+          >
+        </p>
+      </div>
+    </section>
+
+    <section class="py-8">
+      <div class="flex">
+        <div class="w-4/5">
+          <div
+            class="w-3/4 p-5 rounded-lg mx-auto text-justify"
+            style="background-color: #EAFFDB;"
+          >
+            I've worked at No Worries Moving for two years, helping over 900
+            families like yours move smoothly. Moving can be tough, but being
+            prepared makes it easier. I focus on clear communication and am
+            always here to answer questions or give advice. Contact me anytime
+            by phone, email, or text.
+          </div>
+        </div>
+        <div class="w-1/5">
+          <section class="">
+            <div class="flex flex-col items-center">
+              <div class="w-full flex justify-center">
+                <img src={emily} alt="Personal Assistant Image" class="w-4/5" />
+              </div>
+              <div class="text-xs mt-2 font-bold">Personal Assistant</div>
+              <div class="text-lg mb-2 font-extrabold">Emily Wilson</div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <section class="pb-[100px]">
+      <div class="ml-4">
+        <h1 class="font-bold text-lg">Our crew is having high skills...</h1>
+      </div>
+
+      <div class="flex h-[200px] relative overflow-hidden">
+        <div
+          class="absolute top-0 left-0 w-[60%] border-t-[4px]"
+          style="border-color: #42BA03;"
+        >
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-full border-b-[3px]"
+          style="border-color: #42BA03;"
+        >
+        </div>
+        <img src={curoselFirst} alt="Image 1" class="h-[200px] w-auto" />
+        <img src={curoselSecond} alt="Image 2" class="h-[200px] w-auto" />
+        <img src={curoselThird} alt="Image 3" class="h-[200px] w-auto" />
+        <img src={curoselFirst} alt="Image 1" class="h-[200px] w-auto" />
+        <img src={curoselSecond} alt="Image 2" class="h-[200px] w-auto" />
+        <img src={curoselThird} alt="Image 3" class="h-[200px] w-auto" />
+      </div>
+    </section>
+
+    <footer
+      class="fixed bottom-0 left-0 w-full h-[100px] bg-[#EAFFDB] flex items-center justify-around px-4"
+    >
+      <div class="flex items-center">
+        <img src={emily} alt="Footer Image" class="h-[80px] w-auto" />
+        <div class="ml-2">
+          <div class="text-black font-bold">Emily Wilson</div>
+          <div class="text-sm text-black">Personal Assistant</div>
+        </div>
+      </div>
+
+      <div class="hidden md:block">
+        <div class="text-black font-bold">Message to customer</div>
+        <p class="text-xs text-black max-w-[500px]">
+          My name is Emily. I'm a proud mother of three, who loves singing and
+          watching magical shows. Coordinating people's relocations is something
+          I genuinely enjoy, making my role as a 'Personal Assistant' deeply
+          personal to me
+        </p>
+      </div>
+
+      <button
+        class="flex items-center py-2 px-4 text-white bg-blue-600 hover:bg-blue-700 rounded"
+      >
+        <img src={phoneWhiteIcon} alt="Icon" class="h-4 w-4 mr-2" />
+        Call me
+      </button>
+    </footer>
+  </div>
+</Layout>

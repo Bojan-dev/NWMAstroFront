@@ -29,9 +29,13 @@
     "react-flatpickr": "^3.10.13",
     "react-google-autocomplete": "^2.7.3",
     "react-hook-form": "^7.43.3",
+    "react-query": "^3.39.3",
     "react-router-dom": "^6.8.2",
     "react-spinners": "^0.13.8",
     "tailwindcss": "^3.2.7",
     "yup": "^1.0.2"
+  },
+  "devDependencies": {
+    "svgo": "^2.8.0"
   }
 }
